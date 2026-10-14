@@ -8,20 +8,114 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="style.css">
 <title>שנינו</title>
+<meta name="description" content="שנינו: שאלה אחת ביום לשניכם. כל אחד עונה לבד, והתשובות נפתחות רק כששניכם עניתם. אפליקציה בעברית לזוגות.">
+<style>
+  .hero { display: grid; gap: 28px; align-items: center; }
+  @media (min-width: 760px) { .hero { grid-template-columns: 1.1fr 1fr; } }
+  .lead { font-size: 20px; color: #FFE4E9; margin: 0; max-width: 34ch; }
+  .card { background: var(--accent); color: #fff; border-radius: 32px; padding: 22px; display: grid; gap: 14px; border: 2px solid #FFF8F5; }
+  .card .label { font-weight: 500; font-size: 15px; }
+  .card .q { font: 600 26px/1.3 'Fredoka', 'Rubik', sans-serif; margin: 0; }
+  .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .panel { background: #B81D31; border-radius: 20px; padding: 12px; font-size: 15px; display: grid; gap: 2px; }
+  .panel b { font-size: 15px; }
+  .dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; margin-bottom: 4px; }
+  .me .dot { background: #5A1428; color: #fff; }
+  .them .dot { background: #F59AAE; color: #2A0E15; }
+  .steps { display: grid; gap: 12px; padding: 0; list-style: none; counter-reset: s; margin: 8px 0 0; }
+  .steps li { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 16px 18px; counter-increment: s; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; max-width: none; }
+  .steps li::before { content: counter(s); grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; background: var(--soft); color: var(--accent-text); font: 700 18px/34px 'Fredoka', sans-serif; text-align: center; }
+  .steps strong { font: 600 19px/1.3 'Fredoka', 'Rubik', sans-serif; }
+  form { display: grid; gap: 12px; }
+  label { font-weight: 700; font-size: 15px; display: grid; gap: 6px; }
+  input { font: inherit; padding: 14px 16px; border-radius: 20px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-height: 52px; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button { font: 600 18px 'Fredoka', 'Rubik', sans-serif; color: #fff; background: var(--accent); border: 0; border-bottom: 4px solid #A9182C; border-radius: 999px; min-height: 56px; cursor: pointer; }
+  button:active { border-bottom-width: 0; margin-top: 4px; }
+  button[disabled] { opacity: .6; cursor: default; }
+  .small { font-size: 15px; color: var(--muted); margin: 0; }
+  .done { background: var(--soft); border-radius: 20px; padding: 16px 18px; }
+  .ig { display: inline-flex; gap: 6px; align-items: center; }
+</style>
 </head>
 <body>
 <header class="top">
   <a href="./"><svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#FFF8F5"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#FFF8F5"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#D7263D"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg><span class="mark">שנינו</span></a>
-  <h1>שאלה אחת ביום, לשניכם</h1>
-  <p>אפליקציה לזוגות. כל יום שניכם עונים על אותה שאלה, ורואים את התשובה של השני רק אחרי שעניתם.</p>
+  <div class="hero">
+    <div>
+      <h1>כל ערב, אותה שאלה לשניכם</h1>
+      <p class="lead">כל אחד עונה לבד. התשובה של השני נפתחת רק אחרי שעניתם, ואז רואים אותן יחד. אפליקציה בעברית לזוגות, עם שאלות שנכתבו פעם לגבר ופעם לאישה.</p>
+    </div>
+    <div class="card" aria-label="דוגמה: השאלה של היום באפליקציה">
+      <span class="label">השאלה של היום</span>
+      <p class="q">מה הדבר הכי טוב שקרה לך היום?</p>
+      <div class="panels">
+        <div class="panel me"><span class="dot">י</span><b>אני</b>עניתי</div>
+        <div class="panel them"><span class="dot">ד</span><b>דנה</b>עוד לא ענתה</div>
+      </div>
+      <span class="small" style="color:#fff">כששניכם עונים, התשובות נפתחות יחד.</span>
+    </div>
+  </div>
 </header>
 <main>
-  <div class="links">
-    <a href="privacy.html">מדיניות הפרטיות</a>
-    <a href="terms.html">תנאי השימוש</a>
-    <a href="mailto:shneinu.couple@gmail.com">כתבו לנו: shneinu.couple@gmail.com</a>
-  </div>
-  <footer>שנינו · 2026</footer>
+<div class="sheet">
+  <h2>איך זה עובד</h2>
+  <ol class="steps">
+    <li><strong>מתחברים</strong><span>אחד שולח לשני קוד בוואטסאפ, והשני מקליד אותו. עושים את זה פעם אחת.</span></li>
+    <li><strong>עונים כל ערב</strong><span>בשעה שבחרתם מגיעה שאלה חדשה. כל אחד כותב תשובה משלו, בלי לראות את של השני.</span></li>
+    <li><strong>רואים יחד</strong><span>כששניכם עניתם, שתי התשובות נפתחות. אפשר להגיב, ולשמור על רצף של ימים.</span></li>
+  </ol>
+
+  <h2 id="join">שנינו עוד לא בחנויות</h2>
+  <p>השאירו שם ומייל, ונכתוב לכם כשאפשר להוריד.</p>
+  <form id="waitlist" novalidate>
+    <label>שם פרטי<input name="name" autocomplete="given-name" maxlength="60" required></label>
+    <label>מייל<input name="email" type="email" dir="ltr" autocomplete="email" maxlength="200" required></label>
+    <button type="submit">לעדכן אותי כשזה יוצא</button>
+    <p class="small" id="note">נשתמש בכתובת רק כדי לספר לכם שהאפליקציה יצאה. אפשר לבקש שנמחק אותה בכל רגע. <a href="privacy.html">מדיניות הפרטיות</a></p>
+  </form>
+  <p class="done" id="thanks" hidden role="status">תודה! נכתוב לכם כששנינו תהיה בחנויות.</p>
+  <p class="small" id="error" hidden role="alert">לא הצלחנו לשמור. כדאי לבדוק את הכתובת ולנסות שוב.</p>
+</div>
+<footer>
+  <a href="privacy.html">מדיניות הפרטיות</a> · <a href="terms.html">תנאי השימוש</a> · <a href="https://www.instagram.com/shneinu.app/" class="ig">אינסטגרם</a> · <a href="mailto:shneinu.couple@gmail.com">shneinu.couple@gmail.com</a>
+</footer>
 </main>
+<script>
+// Adds the visitor to the launch list through a public database function
+// (join_waitlist). The key below is Supabase's publishable key: safe in a
+// web page, it can only call what row-level security allows.
+const SUPABASE_URL = 'https://secpsqdadkbidtljpebe.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_VyPwLwK80Ahivclu8m70pg_BpLTSy8X';
+const form = document.getElementById('waitlist');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const error = document.getElementById('error');
+  error.hidden = true;
+  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    error.textContent = 'צריך שם פרטי וכתובת מייל תקינה.';
+    error.hidden = false;
+    return;
+  }
+  const button = form.querySelector('button');
+  button.disabled = true;
+  try {
+    const response = await fetch(SUPABASE_URL + '/rest/v1/rpc/join_waitlist', {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_name: name, p_email: email }),
+    });
+    if (!response.ok) throw new Error(String(response.status));
+    form.hidden = true;
+    document.getElementById('thanks').hidden = false;
+  } catch {
+    error.textContent = 'לא הצלחנו לשמור. כדאי לבדוק את הכתובת ולנסות שוב.';
+    error.hidden = false;
+    button.disabled = false;
+  }
+});
+</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # shneinu-site
 
-Shneinu's public pages on GitHub Pages: https://bccohen.github.io/shneinu-site/
+Shneinu's public pages on GitHub Pages: https://shneinu.com/
 
 - `privacy.html`: privacy policy (Hebrew)
 - `terms.html`: terms of use (Hebrew)
