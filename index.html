@@ -123,6 +123,7 @@
   .join label { display: grid; gap: 8px; font-weight: 500; font-size: 15px; }
   .join input { font: inherit; min-height: 58px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--white); color: var(--ink); }
   .join input:focus { outline: 3px solid var(--pink); outline-offset: 2px; }
+  .join .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   .join .small { font-size: 15px; color: var(--blush); margin: 4px 0 0; }
   .join .small a { color: var(--white); }
   .done { background: var(--white); color: var(--red-deep); border-radius: 28px; padding: 22px 26px; margin-top: 36px; max-width: 520px; font: 600 20px/1.4 var(--display); }
@@ -232,6 +233,8 @@
     <form id="waitlist" novalidate>
       <label>שם פרטי<input name="name" autocomplete="given-name" maxlength="60" required></label>
       <label>מייל<input name="email" type="email" dir="ltr" autocomplete="email" maxlength="200" required></label>
+      <!-- A trap for bots: people never see or fill this field. -->
+      <label class="trap" aria-hidden="true">אתר<input name="website" tabindex="-1" autocomplete="off"></label>
       <p class="error" id="error" hidden role="alert"></p>
       <button type="submit" class="btn btn-white">לשמור לי מקום</button>
       <p class="small">נשתמש בכתובת רק כדי לכתוב לכם על שנינו. אפשר לבקש שנמחק אותה בכל רגע. <a href="privacy.html">מדיניות הפרטיות</a></p>
@@ -263,11 +266,19 @@ const SUPABASE_URL = 'https://secpsqdadkbidtljpebe.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_VyPwLwK80Ahivclu8m70pg_BpLTSy8X';
 const form = document.getElementById('waitlist');
 const error = document.getElementById('error');
+const openedAt = Date.now();
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const name = form.name.value.trim();
   const email = form.email.value.trim();
   error.hidden = true;
+  // Bots fill the hidden field, or send the form within a couple of seconds:
+  // they get the thank-you, and nothing is saved.
+  if (form.website.value || Date.now() - openedAt < 2500) {
+    form.hidden = true;
+    document.getElementById('thanks').hidden = false;
+    return;
+  }
   if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     error.textContent = 'צריך שם פרטי וכתובת מייל תקינה.';
     error.hidden = false;
