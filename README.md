@@ -1,15 +1,20 @@
 # Shneinu's public pages
 
 Plain HTML for GitHub Pages: the landing page (with the pilot signup, saved
-through `join_pilot`), the privacy policy and the terms (Hebrew, right-to-left,
-light and dark). The source lives here in the app's repo for review; the
+through `pilot_signup`), the pilot's admin page, the privacy policy and the
+terms (Hebrew, right-to-left, light and dark). The source lives here in the app's repo for review; the
 published copy is the public repo `shneinu-site` (https://shneinu.com, a
 custom domain; DNS at Cloudflare).
 
 To publish a change: copy these files into the `shneinu-site` repo and push.
 
-- **Pilot signups:** `npm run waitlist` lists them with the phone (iPhone →
-  TestFlight, Android → the Google Play closed test, by that Gmail address).
+- **The pilot:** one partner signs up for the couple (full name, email, the
+  couple's phones, and the Google account of every Android phone). Approve or
+  turn down on `admin.html` (sign in with an admin account's email code). The
+  `pilot-admin` Edge Function sends the emails through Resend: the TestFlight
+  link for a couple with an iPhone, "Android starts soon" for Android, and,
+  once the Android testers are in Play Console, "the Android pilot is open".
+  The links are saved on the admin page. `npm run waitlist` lists signups too.
 - **At launch:** put the two store links in `STORES` at the top of the script
   in `index.html`. The forms turn into download buttons (a phone sees its own
   store first). Then reword the FAQ and its copy in the JSON-LD at the top,

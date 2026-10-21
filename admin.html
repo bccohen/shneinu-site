@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ניהול הפיילוט · שנינו</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#D7263D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css?v=3">
+<style>
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px 64px; }
+  header.bar { background: var(--red); color: var(--on-red); }
+  header.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; padding-bottom: 0; }
+  header.bar a { color: var(--on-red); text-decoration: none; font: 700 24px/1 var(--display); display: inline-flex; gap: 10px; align-items: center; }
+  header.bar svg { width: 34px; height: 34px; }
+  h1 { font: 600 32px/1.2 var(--display); margin: 32px 0 6px; }
+  h2 { font: 600 22px/1.3 var(--display); margin: 0 0 10px; }
+  .muted { color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 20px 22px; box-shadow: var(--shadow); margin-top: 16px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 4px 22px 8px; border-radius: 999px; font: 600 17px/1.2 var(--display); border: 0; cursor: pointer; text-decoration: none; }
+  .btn-red { background: var(--red); color: #FFFFFF; box-shadow: inset 0 -4px 0 var(--red-edge); }
+  .btn-line { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); padding-bottom: 4px; }
+  .btn-small { min-height: 44px; font-size: 16px; padding: 2px 18px 6px; }
+  .btn[disabled] { opacity: .6; cursor: progress; }
+  header.bar .btn-line { color: var(--on-red); border-color: var(--on-red); }
+  .field { display: grid; gap: 6px; font-size: 15px; font-weight: 500; margin-top: 12px; }
+  .field input { font: 400 17px var(--body); min-height: 52px; padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; text-align: left; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+  .note { border-radius: 18px; padding: 12px 16px; margin: 16px 0 0; font-size: 16px; line-height: 1.5; background: var(--blush); color: var(--accent-text); }
+  .note[hidden] { display: none; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px; text-align: center; }
+  .tile b { display: block; font: 700 30px/1.1 var(--display); color: var(--red); }
+  .tile span { font-size: 15px; color: var(--muted); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tabs button { font: 600 16px/1.2 var(--display); min-height: 44px; padding: 4px 18px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .tabs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .signup h3 { font: 600 21px/1.3 var(--display); margin: 0; }
+  .signup dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 10px 0 0; font-size: 16px; }
+  .signup dt { color: var(--muted); }
+  .signup dd { margin: 0; overflow-wrap: anywhere; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+  .pill { display: inline-block; border-radius: 999px; padding: 2px 12px; font-size: 14px; font-weight: 500; background: var(--blush); color: var(--accent-text); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a href="./"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#5A1428"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#FFF8F5"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#D7263D"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg>שנינו</a>
+  <button class="btn btn-line btn-small" id="sign-out" hidden>יציאה</button>
+</div></header>
+
+<main class="wrap">
+  <h1>ניהול הפיילוט</h1>
+  <p class="note" id="message" role="alert" hidden></p>
+
+  <!-- Sign in with the app's email code; only an admin account sees anything. -->
+  <section class="card" id="sign-in" hidden>
+    <h2>כניסה</h2>
+    <p class="muted">עם המייל של חשבון מנהל באפליקציה. נשלח אליו קוד.</p>
+    <form id="email-form">
+      <label class="field">מייל<input name="email" type="email" dir="ltr" autocomplete="email" required></label>
+      <div class="row"><button class="btn btn-red">לשלוח קוד</button></div>
+    </form>
+    <form id="code-form" hidden>
+      <label class="field">הקוד מהמייל<input name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" dir="ltr" required></label>
+      <div class="row"><button class="btn btn-red">כניסה</button><button type="button" class="btn btn-line" id="back">מייל אחר</button></div>
+    </form>
+  </section>
+
+  <div id="panel" hidden>
+    <p class="note" id="no-mail" hidden>שליחת המיילים עוד לא מחוברת (RESEND_API_KEY בסודות של Supabase). אפשר לדחות הרשמות, אבל אישור שולח מייל ולכן לא יעבוד עד אז.</p>
+    <div class="tiles">
+      <div class="tile"><b id="n-pending">0</b><span>ממתינים</span></div>
+      <div class="tile"><b id="n-approved">0</b><span>אושרו</span></div>
+      <div class="tile"><b id="n-android">0</b><span id="android-goal">בודקי אנדרואיד</span></div>
+    </div>
+
+    <section class="card">
+      <h2>קישורים לפיילוט</h2>
+      <p class="muted">הקישור הציבורי של TestFlight נשלח בכל אישור של זוג עם אייפון. קישור הבדיקה של Google Play נשלח כשהפיילוט באנדרואיד נפתח.</p>
+      <form id="links-form">
+        <label class="field">TestFlight (קישור ציבורי)<input name="testflight" dir="ltr" placeholder="https://testflight.apple.com/join/…"></label>
+        <label class="field">Google Play (קישור ההצטרפות לבדיקה הסגורה)<input name="play" dir="ltr" placeholder="https://play.google.com/apps/testing/com.shneinu.app"></label>
+        <div class="row"><button class="btn btn-red btn-small">לשמור</button></div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>הפיילוט באנדרואיד</h2>
+      <p id="android-line" class="muted"></p>
+      <ol class="muted">
+        <li>להעתיק את הכתובות ולהוסיף אותן ב־Play Console, ברשימת ה־Testers של ה־Closed testing.</li>
+        <li>לשלוח לזוגות את המייל שהפיילוט נפתח, עם הקישור לבדיקה.</li>
+      </ol>
+      <div class="row">
+        <button class="btn btn-line btn-small" id="copy-android">להעתיק את כתובות האנדרואיד</button>
+        <button class="btn btn-red btn-small" id="android-open">לשלוח ״הפיילוט נפתח״</button>
+      </div>
+    </section>
+
+    <div class="tabs" role="group" aria-label="סינון">
+      <button type="button" data-status="pending" aria-pressed="true">ממתינים</button>
+      <button type="button" data-status="approved" aria-pressed="false">אושרו</button>
+      <button type="button" data-status="rejected" aria-pressed="false">נדחו</button>
+    </div>
+    <div id="list"></div>
+  </div>
+</main>
+
+<script>
+// Pilot approvals for admins. Signs in with Supabase's email code (no new
+// accounts), reads through admin_* database functions that check is_admin,
+// and approves through the pilot-admin Edge Function, which sends the emails.
+const SUPABASE_URL = 'https://secpsqdadkbidtljpebe.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_VyPwLwK80Ahivclu8m70pg_BpLTSy8X';
+const STORE = 'shneinu-admin-session';
+
+const $ = (id) => document.getElementById(id);
+const PHONES = { ios: 'שניהם באייפון', mixed: 'אייפון ואנדרואיד', android: 'שניהם באנדרואיד' };
+const ERRORS = {
+  not_admin: 'החשבון הזה אינו מנהל.',
+  mail_not_configured: 'שליחת המיילים עוד לא מחוברת (RESEND_API_KEY).',
+  no_testflight_url: 'צריך קודם לשמור את הקישור של TestFlight.',
+  no_play_url: 'צריך קודם לשמור את הקישור של Google Play.',
+  bad_testflight_url: 'הקישור של TestFlight צריך להיראות כך: https://testflight.apple.com/join/…',
+  bad_play_url: 'הקישור של Google Play צריך להתחיל ב־https://play.google.com/',
+  bad_transition: 'ההרשמה הזאת כבר טופלה. הרשימה רועננה.',
+};
+
+let session = null;
+try { session = JSON.parse(localStorage.getItem(STORE)); } catch {}
+let data = null;
+let mailReady = true;
+let filter = 'pending';
+
+function save(s) {
+  session = s;
+  try { s ? localStorage.setItem(STORE, JSON.stringify(s)) : localStorage.removeItem(STORE); } catch {}
+}
+function say(text) {
+  $('message').textContent = text;
+  $('message').hidden = !text;
+}
+function errorText(e) {
+  const code = String(e.message || e);
+  return ERRORS[code] ?? (code.startsWith('mail_failed') ? 'Resend לא שלח את המייל: ' + code.slice(13) : 'משהו נכשל: ' + code);
+}
+
+async function auth(path, body) {
+  const res = await fetch(`${SUPABASE_URL}/auth/v1/${path}`, {
+    method: 'POST',
+    headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(json.msg || json.error_description || json.message || res.status);
+  return json;
+}
+function keep(json) {
+  save({ access_token: json.access_token, refresh_token: json.refresh_token, expires_at: Date.now() + json.expires_in * 1000 });
+}
+async function token() {
+  if (session && Date.now() > session.expires_at - 60000) {
+    try { keep(await auth('token?grant_type=refresh_token', { refresh_token: session.refresh_token })); }
+    catch { save(null); show(); throw new Error('צריך להיכנס שוב.'); }
+  }
+  return session.access_token;
+}
+
+// A database function or the Edge Function, as the signed-in admin.
+async function call(url, body) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${await token()}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body ?? {}),
+  });
+  const json = await res.json().catch(() => null);
+  if (!res.ok) throw new Error(json?.message || json?.error || res.status);
+  return json;
+}
+const rpc = (fn, args) => call(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, args);
+const action = (body) => call(`${SUPABASE_URL}/functions/v1/pilot-admin`, body);
+
+function show() {
+  $('sign-in').hidden = !!session;
+  $('panel').hidden = !session || !data;
+  $('sign-out').hidden = !session;
+}
+
+async function load() {
+  try {
+    data = await rpc('admin_pilot_overview');
+    show();
+    render();
+  } catch (e) {
+    say(errorText(e));
+  }
+}
+
+function dayTime(t) {
+  return t ? new Date(t).toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem', day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+}
+
+function render() {
+  const { signups, settings, android_testers } = data;
+  const count = (s) => signups.filter((x) => x.status === s).length;
+  $('n-pending').textContent = count('pending');
+  $('n-approved').textContent = count('approved');
+  $('n-android').textContent = `${android_testers}/${settings.android_goal}`;
+  const form = $('links-form');
+  if (document.activeElement?.form !== form) {
+    form.testflight.value = settings.testflight_url ?? '';
+    form.play.value = settings.play_url ?? '';
+  }
+  const waiting = signups.filter((s) => s.status === 'approved' && s.phones !== 'ios' && !s.android_started_at);
+  $('android-line').textContent = `${android_testers} מתוך ${settings.android_goal} בודקי אנדרואיד אושרו. ${waiting.length} זוגות מחכים למייל שהפיילוט נפתח.`;
+  $('android-open').disabled = waiting.length === 0;
+  $('no-mail').hidden = mailReady;
+
+  const list = $('list');
+  list.replaceChildren();
+  const shown = signups.filter((s) => s.status === filter);
+  if (!shown.length) {
+    const empty = document.createElement('p');
+    empty.className = 'muted';
+    empty.textContent = 'אין כאן אף אחד כרגע.';
+    list.append(empty);
+  }
+  for (const s of shown) {
+    const card = document.createElement('article');
+    card.className = 'card signup';
+    const h = document.createElement('h3');
+    h.textContent = s.full_name;
+    const dl = document.createElement('dl');
+    const add = (label, value, ltr) => {
+      if (!value) return;
+      const dt = document.createElement('dt'); dt.textContent = label;
+      const dd = document.createElement('dd'); dd.textContent = value;
+      if (ltr) dd.className = 'ltr';
+      dl.append(dt, dd);
+    };
+    add('מייל', s.email, true);
+    add('טלפונים', PHONES[s.phones]);
+    add(s.android_emails.length > 1 ? 'חשבונות Google' : 'חשבון Google', s.android_emails.join(', '), true);
+    add('נרשמו', dayTime(s.created_at));
+    add('מייל אישור', dayTime(s.welcome_sent_at));
+    add('״הפיילוט נפתח״', dayTime(s.android_started_at));
+    const row = document.createElement('div');
+    row.className = 'row';
+    const button = (text, cls, fn) => {
+      const b = document.createElement('button');
+      b.className = `btn btn-small ${cls}`;
+      b.textContent = text;
+      b.onclick = async () => {
+        b.disabled = true;
+        say('');
+        try { await fn(); } catch (e) { say(errorText(e)); }
+        await load();
+      };
+      row.append(b);
+    };
+    if (s.status === 'pending') {
+      const what = s.phones === 'android' ? 'מייל שהפיילוט באנדרואיד נפתח בקרוב' : s.phones === 'mixed' ? 'קישור ל־TestFlight והודעה שהאנדרואיד בקרוב' : 'קישור ל־TestFlight';
+      button('לאשר ולשלוח מייל', 'btn-red', async () => {
+        if (!confirm(`לאשר את ${s.full_name}? יישלח ל־${s.email}: ${what}.`)) return;
+        await action({ action: 'approve', id: s.id });
+      });
+      button('לדחות', 'btn-line', () => action({ action: 'reject', id: s.id }));
+    } else if (s.status === 'rejected') {
+      button('להחזיר להמתנה', 'btn-line', () => action({ action: 'restore', id: s.id }));
+    }
+    card.append(h, dl);
+    if (row.children.length) card.append(row);
+    list.append(card);
+  }
+}
+
+$('email-form').onsubmit = async (event) => {
+  event.preventDefault();
+  say('');
+  try {
+    await auth('otp', { email: event.target.email.value.trim(), create_user: false });
+    $('email-form').hidden = true;
+    $('code-form').hidden = false;
+    $('code-form').code.focus();
+  } catch (e) {
+    say('לא הצלחנו לשלוח קוד: ' + e.message);
+  }
+};
+$('code-form').onsubmit = async (event) => {
+  event.preventDefault();
+  say('');
+  try {
+    keep(await auth('verify', { type: 'email', email: $('email-form').email.value.trim(), token: event.target.code.value.trim() }));
+    await start();
+  } catch (e) {
+    say('הקוד לא התקבל: ' + e.message);
+  }
+};
+$('back').onclick = () => { $('code-form').hidden = true; $('email-form').hidden = false; };
+$('sign-out').onclick = async () => {
+  try { await fetch(`${SUPABASE_URL}/auth/v1/logout`, { method: 'POST', headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${session.access_token}` } }); } catch {}
+  save(null);
+  data = null;
+  say('');
+  show();
+};
+$('links-form').onsubmit = async (event) => {
+  event.preventDefault();
+  say('');
+  try {
+    await rpc('admin_pilot_set_links', { p_testflight_url: event.target.testflight.value.trim(), p_play_url: event.target.play.value.trim() });
+    event.target.querySelector('button').blur();
+    say('הקישורים נשמרו.');
+  } catch (e) { say(errorText(e)); }
+  await load();
+};
+$('copy-android').onclick = async () => {
+  const emails = [...new Set(data.signups.filter((s) => s.status === 'approved').flatMap((s) => s.android_emails))];
+  try {
+    await navigator.clipboard.writeText(emails.join(', '));
+    say(`הועתקו ${emails.length} כתובות.`);
+  } catch {
+    prompt('הכתובות:', emails.join(', '));
+  }
+};
+$('android-open').onclick = async () => {
+  const { android_testers, settings } = data;
+  const below = android_testers < settings.android_goal ? ` יש רק ${android_testers} מתוך ${settings.android_goal} בודקים.` : '';
+  if (!confirm(`לשלוח עכשיו את המייל שהפיילוט באנדרואיד נפתח?${below} חשוב שהכתובות כבר ברשימת הבודקים ב־Play Console.`)) return;
+  say('');
+  try {
+    const { sent } = await action({ action: 'android_open' });
+    say(`נשלחו ${sent} מיילים.`);
+  } catch (e) { say(errorText(e)); }
+  await load();
+};
+for (const b of document.querySelectorAll('.tabs button')) {
+  b.onclick = () => {
+    filter = b.dataset.status;
+    for (const o of document.querySelectorAll('.tabs button')) o.setAttribute('aria-pressed', String(o === b));
+    render();
+  };
+}
+
+async function start() {
+  show();
+  if (!session) return;
+  try { mailReady = (await action({ action: 'status' })).mail; } catch (e) { say(errorText(e)); }
+  await load();
+}
+start();
+</script>
+</body>
+</html>
