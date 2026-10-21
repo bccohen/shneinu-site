@@ -2,306 +2,654 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>שנינו · אפליקציה לזוגיות</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>שנינו: אפליקציה לזוגות, שאלה אחת ביום לשניכם</title>
+<meta name="description" content="אפליקציה לזוגות בעברית: כל יום מגיעה לשניכם אותה שאלה, והתשובות נפתחות רק כששניכם עניתם. שאלות לזוגות, משחקים זוגיים ושולחן שבת. לאייפון ולאנדרואיד.">
+<link rel="canonical" href="https://shneinu.com/">
+<link rel="alternate" hreflang="he-IL" href="https://shneinu.com/">
+<link rel="alternate" hreflang="x-default" href="https://shneinu.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta name="description" content="שנינו: כל ערב מגיעה לשניכם אותה שאלה. כל אחד עונה לבד, והתשובות נפתחות רק כששניכם עניתם. אפליקציה לזוגיות, בעברית.">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#D7263D">
-<meta property="og:title" content="שנינו · אפליקציה לזוגיות">
-<meta property="og:description" content="שאלה אחת כל ערב. שתי תשובות. נפתחות רק כששניכם עניתם.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="שנינו">
+<meta property="og:url" content="https://shneinu.com/">
+<meta property="og:title" content="שנינו: שאלה אחת ביום, שתי תשובות">
+<meta property="og:description" content="כל יום אותה שאלה לשניכם. התשובה של השני נפתחת רק אחרי שעניתם. אפליקציה לזוגות בעברית, לאייפון ולאנדרואיד.">
+<meta property="og:image" content="https://shneinu.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="הלוגו של שנינו, רימון בצורת לב, והכיתוב: שאלה אחת ביום. שתי תשובות.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Rubik:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik:wght@400;500;700&display=swap">
+<link rel="preload" as="image" href="img/today.jpg" fetchpriority="high">
+<link rel="stylesheet" href="style.css?v=3">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://shneinu.com/#org",
+      "name": "שנינו",
+      "alternateName": "Shneinu",
+      "url": "https://shneinu.com/",
+      "logo": "https://shneinu.com/apple-touch-icon.png",
+      "email": "shneinu.couple@gmail.com",
+      "sameAs": ["https://www.instagram.com/shneinu.app/", "https://www.tiktok.com/@shneinu.app"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://shneinu.com/#site",
+      "url": "https://shneinu.com/",
+      "name": "שנינו",
+      "alternateName": "Shneinu",
+      "inLanguage": "he-IL",
+      "publisher": { "@id": "https://shneinu.com/#org" }
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "שנינו",
+      "alternateName": "Shneinu",
+      "description": "אפליקציה לזוגות בעברית: שאלה אחת ביום לשניכם, והתשובות נפתחות רק כששניכם עניתם.",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "LifestyleApplication",
+      "inLanguage": "he",
+      "countriesSupported": "IL",
+      "url": "https://shneinu.com/",
+      "image": "https://shneinu.com/og.png",
+      "publisher": { "@id": "https://shneinu.com/#org" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ILS" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מה זה שנינו?", "acceptedAnswer": { "@type": "Answer", "text": "אפליקציה לזוגות בעברית. כל יום מגיעה לשניכם אותה שאלה, כל אחד עונה מהטלפון שלו, והתשובה של בן או בת הזוג נפתחת רק אחרי שעניתם בעצמכם. יש גם חבילות שאלות לכל שלב בקשר ומשחקים לשניים." } },
+        { "@type": "Question", "name": "כמה זה עולה?", "acceptedAnswer": { "@type": "Answer", "text": "בפיילוט הכול פתוח בחינם. גם אחרי ההשקה השאלה היומית תישאר בחינם. בהמשך יהיה מנוי שפותח את החבילות וההיסטוריה, ומנוי אחד מספיק לשניכם." } },
+        { "@type": "Question", "name": "איך מצטרפים לפיילוט?", "acceptedAnswer": { "@type": "Answer", "text": "משאירים באתר מייל ובוחרים אייפון או אנדרואיד. נשלח לכם הזמנה אישית: באייפון דרך TestFlight, האפליקציה של אפל לניסוי אפליקציות לפני שהן בחנות, ובאנדרואיד דרך Google Play. באנדרואיד צריך לכתוב את כתובת ה־Gmail שמחוברת לטלפון." } },
+        { "@type": "Question", "name": "צריך ששנינו נוריד את האפליקציה?", "acceptedAnswer": { "@type": "Answer", "text": "כן, כל אחד בטלפון שלו. אחד שולח לשני קוד הזמנה בוואטסאפ, השני מקליד אותו, ואתם מחוברים. אייפון ואנדרואיד מתחברים זה לזה בלי בעיה." } },
+        { "@type": "Question", "name": "מי רואה את התשובות שלנו?", "acceptedAnswer": { "@type": "Answer", "text": "רק שניכם. התשובה של בן או בת הזוג נשארת נעולה עד שעניתם על אותה שאלה, והכלל הזה נאכף בשרת ולא רק במסך. אין באפליקציה פרסומות או כלי מעקב, ולא מוכרים מידע." } },
+        { "@type": "Question", "name": "זה מתאים גם לזוגות חד־מיניים?", "acceptedAnswer": { "@type": "Answer", "text": "כן. כל אחד בוחר אם לפנות אליו בלשון זכר או נקבה, וכל שאלה נכתבה בשתי הלשונות." } },
+        { "@type": "Question", "name": "אנחנו שומרים שבת. זה מסתדר?", "acceptedAnswer": { "@type": "Answer", "text": "כן. מי שמסמן ששומר שבת לא מקבל התראות בשבת ובחגים, והרצף של שניכם מדלג על הימים האלה בלי להישבר." } }
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
-  .eyebrow { font: 500 15px/1 var(--body); display: inline-flex; align-items: center; gap: 10px; }
-  .eyebrow::before { content: ''; width: 9px; height: 13px; border-radius: 50%; background: currentColor; transform: rotate(-24deg); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 30px; border-radius: 999px; font: 600 18px/1 var(--display); text-decoration: none; border: 0; cursor: pointer; transition: transform .25s ease; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-white { background: var(--white); color: var(--red-deep); box-shadow: inset 0 -4px 0 var(--blush); }
-  .btn-red { background: var(--red); color: var(--white); box-shadow: inset 0 -4px 0 var(--red-dark); }
+  .wrap { max-width: 1160px; margin: 0 auto; padding-inline: 20px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* The seed: small tilted oval, the app's mark for "here" and progress. */
+  .seed { display: inline-block; width: 9px; height: 13px; border-radius: 50%; background: currentColor; transform: rotate(-24deg); flex: none; }
+  .eyebrow { font: 500 15px/1.3 var(--body); display: inline-flex; align-items: center; gap: 10px; color: var(--accent-text); margin: 0; }
+  h2.title { font: 600 clamp(34px, 5vw, 54px)/1.12 var(--display); margin: 14px 0 16px; text-wrap: balance; }
+  p.intro { font-size: 20px; line-height: 1.6; max-width: 44ch; margin: 0; color: var(--muted); }
+  section.block { padding-block: clamp(72px, 10vw, 120px); }
+  section[id] { scroll-margin-top: 84px; }
+
+  /* Buttons: pills with a darker bottom edge that flattens on press. */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 6px 30px 10px; border-radius: 999px; font: 600 19px/1.2 var(--display); text-decoration: none; border: 0; cursor: pointer; transition: transform .3s ease, box-shadow .3s ease; }
+  .btn:active { transform: translateY(3px); }
+  .btn-red { background: var(--red); color: var(--white); box-shadow: inset 0 -4px 0 var(--red-edge); }
+  .btn-red:active { box-shadow: inset 0 -1px 0 var(--red-edge); }
+  .btn-white { background: var(--white); color: #A9182C; box-shadow: inset 0 -4px 0 var(--red-edge); }
+  .btn-white:active { box-shadow: inset 0 -1px 0 var(--red-edge); }
+  .btn:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+  .btn[disabled] { cursor: progress; }
 
   /* ------------------------------------------------------------ nav */
-  .nav { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.88); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--line); }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 68px; }
-  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--red); font: 700 26px/1 var(--display); }
-  .nav .btn { min-height: 44px; padding: 0 20px; font-size: 16px; }
+  .nav { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--red); font: 700 28px/1 var(--display); }
+  .brand svg { width: 36px; height: 36px; }
+  .nav-links { display: none; gap: 28px; }
+  .nav-links a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 16px; }
+  .nav-links a:hover { color: var(--accent-text); }
+  @media (min-width: 900px) { .nav-links { display: flex; } }
+  .nav .btn { min-height: 48px; padding: 4px 22px 8px; font-size: 17px; }
 
   /* ------------------------------------------------------------ hero */
-  .hero { background: var(--red); color: var(--white); overflow: hidden; position: relative; }
-  .hero .wrap { display: grid; gap: 48px; align-items: center; padding-block: 72px 0; }
-  @media (min-width: 900px) { .hero .wrap { grid-template-columns: 1.15fr .85fr; padding-block: 88px 0; } }
-  .hero h1 { font: 600 clamp(48px, 8.4vw, 92px)/1.02 var(--display); margin: 22px 0 22px; letter-spacing: -.01em; text-wrap: balance; }
-  .hero h1 span { display: block; color: var(--blush); }
-  .hero p.lead { font-size: clamp(19px, 2.2vw, 22px); line-height: 1.6; max-width: 31ch; margin: 0 0 34px; color: var(--white); }
-  .hero .note { font-size: 15px; color: var(--blush); margin: 16px 0 0; max-width: 40ch; }
-  .hero-copy { padding-bottom: 72px; }
-  .hero-art { display: flex; justify-content: center; align-self: end; }
+  .hero { background: var(--red); color: var(--on-red); overflow: hidden; }
+  .hero .wrap { display: grid; gap: 40px; padding-top: clamp(36px, 5vw, 60px); }
+  @media (min-width: 960px) { .hero .wrap { grid-template-columns: 1.1fr .9fr; align-items: end; gap: 56px; } }
+  .hero-copy { padding-bottom: clamp(8px, 4vw, 80px); align-self: center; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .hero .chip-row li { background: var(--red-panel); color: var(--on-red); border-radius: 999px; padding: 6px 16px; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; min-height: 36px; }
+  .hero .chip-row .seed { color: var(--pink); }
+  .hero h1 { margin: 20px 0 14px; text-wrap: balance; }
+  .hero h1 .kicker { display: block; font: 500 clamp(18px, 2vw, 21px)/1.4 var(--body); color: var(--on-red-soft); margin-bottom: 10px; }
+  .hero h1 .big { display: block; font: 700 clamp(46px, 6.6vw, 78px)/1.02 var(--display); letter-spacing: -.01em; }
+  .hero h1 .big span { color: var(--on-red-soft); }
+  .hero .lead { font-size: clamp(19px, 2.1vw, 22px); line-height: 1.6; max-width: 34ch; margin: 0 0 28px; }
 
-  /* The phone: the Today screen, drawn with the app's own pieces. */
-  .phone { width: min(330px, 82vw); aspect-ratio: 330 / 640; background: var(--white); border-radius: 52px 52px 0 0; padding: 14px 14px 0; box-shadow: 0 -30px 80px -20px rgba(80, 0, 15, .45); }
-  .screen { height: 100%; background: var(--paper); border-radius: 40px 40px 0 0; padding: 30px 16px 0; display: grid; grid-template-rows: auto auto auto auto 1fr; gap: 12px; overflow: hidden; }
-  .tabs { align-self: end; margin: 0 -16px; background: var(--white); border-radius: 24px 24px 0 0; box-shadow: 0 -6px 20px -10px rgba(169, 24, 44, .25); display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; font-size: 11px; color: var(--ink); padding: 12px 6px 18px; }
-  .tabs span::before { content: ''; display: block; width: 18px; height: 18px; margin: 0 auto 4px; border-radius: 6px; border: 2px solid currentColor; }
-  .tabs .on { color: var(--red); font-weight: 700; }
-  .tabs .on::after { content: ''; display: block; width: 6px; height: 9px; margin: 4px auto 0; border-radius: 50%; background: var(--red); transform: rotate(-24deg); }
-  .greet { display: flex; align-items: center; justify-content: space-between; }
-  .greet small { display: block; font-size: 12px; color: var(--red-deep); }
-  .greet b { font: 600 22px/1.2 var(--display); color: var(--ink); }
-  .avatars { display: flex; }
-  .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--body); border: 2px solid var(--paper); }
-  .av.me { background: var(--red); color: var(--white); }
-  .av.them { background: var(--pink); color: var(--ink); margin-inline-start: -10px; }
-  .week { background: var(--white); border: 1px solid var(--line); border-radius: 20px; padding: 10px 12px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 11px; color: var(--red-deep); }
-  .week i { display: block; width: 20px; height: 24px; border-radius: 50%; margin: 4px auto 0; border: 2px solid var(--line); }
-  .week i.on { background: var(--red); border-color: var(--red); }
-  .week i.today { border: 2px dashed var(--red); }
-  .qcard { background: var(--red); color: var(--white); border-radius: 26px; padding: 16px; display: grid; gap: 10px; }
-  .qcard small { font-size: 12px; }
-  .qcard b { font: 600 21px/1.25 var(--display); }
-  .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .panel { background: var(--red-deep); border-radius: 16px; padding: 9px 10px; font-size: 11.5px; line-height: 1.45; }
-  .panel strong { display: block; font-size: 12.5px; }
-  .answer { background: var(--white); color: var(--red-deep); border-radius: 999px; text-align: center; font: 600 14px/40px var(--display); }
-  .locked { background: var(--white); border: 1.5px solid var(--pink); border-radius: 18px; padding: 10px 12px; font-size: 12px; color: var(--red-deep); display: grid; gap: 6px; }
-  .locked span { display: block; height: 8px; border-radius: 4px; background: var(--blush); }
-  .locked span + span { width: 60%; }
+  /* The pilot form: a card on the red. */
+  .pilot { background: var(--surface); color: var(--ink); border-radius: 32px; padding: 24px; max-width: 520px; box-shadow: 0 30px 60px -30px rgba(60, 0, 12, .55); }
+  .pilot h2 { font: 600 22px/1.3 var(--display); margin: 0 0 4px; }
+  .pilot .sub { margin: 0 0 18px; font-size: 16px; line-height: 1.5; color: var(--muted); }
+  .pilot form { display: grid; gap: 14px; }
+  .field { display: grid; gap: 6px; font-size: 15px; font-weight: 500; }
+  .field input { font: 400 18px var(--body); min-height: 56px; padding: 10px 20px; border-radius: 20px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; text-align: left; }
+  .field input::placeholder { color: var(--muted); }
+  .field input:focus { outline: 3px solid var(--pink); outline-offset: 1px; border-color: var(--red); }
+  .phones { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .phones legend { font-size: 15px; font-weight: 500; padding: 0; margin-bottom: 6px; }
+  .phones .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .phones label { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; border-radius: 999px; border: 1.5px solid var(--ink); font: 600 18px/1.2 var(--display); cursor: pointer; padding: 6px 12px; transition: background .3s ease, color .3s ease, border-color .3s ease; }
+  .phones input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .phones label:has(input:checked) { background: var(--red); border-color: var(--red); color: var(--white); }
+  .phones label:has(input:focus-visible) { outline: 3px solid var(--pink); outline-offset: 2px; }
+  .phones svg { width: 18px; height: 18px; flex: none; }
+  .hint { margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted); }
+  .hint[hidden] { display: none; }
+  .pilot .btn { width: 100%; }
+  /* Hidden in place: never pushed off to a side. In right-to-left pages the
+     browser lets you scroll to whatever sits off the left edge, which made the
+     old page zoom out to a sea of white on phones. */
+  .trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; pointer-events: none; }
+  .error { color: var(--accent-text); background: var(--blush); border-radius: 16px; padding: 10px 16px; margin: 0; font-size: 15px; }
+  .fine { font-size: 15px; line-height: 1.5; color: var(--muted); margin: 2px 0 0; }
+  .done { display: grid; gap: 8px; justify-items: start; }
+  .done[hidden] { display: none; }
+  .done svg { width: 56px; height: 56px; }
+  .done h3 { font: 600 24px/1.3 var(--display); margin: 0; }
+  .done p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--muted); }
 
-  /* --------------------------------------------------------- sections */
-  section.block { padding-block: clamp(72px, 10vw, 120px); }
-  .block h2 { font: 600 clamp(34px, 5vw, 56px)/1.1 var(--display); color: var(--ink); margin: 18px 0 18px; text-wrap: balance; }
-  .block .eyebrow { color: var(--red); }
-  .block p.intro { font-size: 20px; max-width: 40ch; margin: 0; }
+  /* After launch the forms give way to store buttons (see STORES below). */
+  .stores { display: none; flex-wrap: wrap; gap: 12px; }
+  .stores .btn { min-width: 200px; }
+  html.launched .pilot-only { display: none !important; }
+  html.launched .stores { display: flex; }
 
-  .steps { list-style: none; margin: 56px 0 0; padding: 0; display: grid; gap: 20px; }
+  /* The real Today screen in a phone. */
+  .hero-art { position: relative; display: flex; justify-content: center; align-self: end; padding-top: 24px; }
+  .phone { width: min(320px, 78vw); background: var(--wine); border-radius: 48px 48px 0 0; padding: 12px 12px 0; box-shadow: 0 -20px 60px -20px rgba(60, 0, 12, .5); }
+  .phone img { display: block; width: 100%; height: auto; aspect-ratio: 600 / 1300; object-fit: cover; object-position: top; border-radius: 37px 37px 0 0; max-height: 560px; }
+  .float { position: absolute; background: var(--surface); color: var(--ink); border-radius: 24px; padding: 10px 16px 10px 14px; display: flex; align-items: center; gap: 12px; box-shadow: 0 20px 40px -18px rgba(60, 0, 12, .55); font-size: 15px; line-height: 1.35; max-width: 250px; }
+  .float b { display: block; font: 600 16px/1.3 var(--display); }
+  .float .icon { width: 40px; height: 40px; border-radius: 12px; background: var(--red); display: grid; place-items: center; flex: none; }
+  .float .icon svg { width: 30px; height: 30px; }
+  .float.n1 { top: 64px; inset-inline-start: 0; }
+  .float.n2 { bottom: 90px; inset-inline-end: 0; }
+  .float.n2 .seedbig { width: 18px; height: 26px; border-radius: 50%; background: var(--red); transform: rotate(-24deg); flex: none; margin-inline: 6px; }
+  @media (max-width: 520px) { .float { font-size: 14px; max-width: 210px; } .float.n2 { display: none; } .float.n1 { top: 4px; } }
+
+  /* ------------------------------------------------------------ steps */
+  .steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; gap: 16px; counter-reset: step; }
   @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
-  .steps li { margin: 0; max-width: none; border-top: 2px solid var(--red); padding-top: 22px; }
-  .steps .num { font: 700 64px/1 var(--display); color: var(--red); font-variant-numeric: tabular-nums; }
-  .steps h3 { font: 600 26px/1.25 var(--display); margin: 14px 0 8px; }
-  .steps p { margin: 0; font-size: 17px; }
+  .steps li { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: var(--shadow); display: grid; gap: 10px; align-content: start; }
+  .steps .num { width: 46px; height: 60px; border-radius: 50%; background: var(--red); color: var(--white); transform: rotate(-18deg); display: grid; place-items: center; font: 700 24px/1 var(--display); }
+  .steps .num span { transform: rotate(18deg); }
+  .steps li:nth-child(2) .num { background: var(--pink); color: var(--ink); }
+  .steps li:nth-child(3) .num { background: var(--wine); }
+  .steps h3 { font: 600 25px/1.3 var(--display); margin: 8px 0 0; }
+  .steps p { margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted); }
 
+  /* ------------------------------------------------------------ reveal */
   .reveal { background: var(--blush); }
   .split { display: grid; gap: 48px; align-items: center; }
-  @media (min-width: 860px) { .split { grid-template-columns: 1fr 1fr; } }
-  .duo { background: var(--white); border-radius: 36px; padding: 28px; display: grid; gap: 14px; box-shadow: 0 30px 70px -40px rgba(169, 24, 44, .5); }
-  .duo .head { display: flex; align-items: center; gap: 14px; font: 600 26px var(--display); }
-  .bubble { border-radius: 24px; padding: 14px 18px; display: grid; gap: 2px; max-width: 88%; }
-  .bubble small { font-weight: 700; font-size: 14px; }
-  .bubble.me { background: var(--blush); color: var(--ink); }
-  .bubble.me small { color: var(--red-deep); }
-  .bubble.them { background: var(--white); border: 2px solid var(--pink); margin-inline-start: auto; }
-  .bubble.them small { color: var(--red-deep); }
-  .reacts { display: flex; gap: 8px; justify-content: center; font-size: 22px; }
-  .reacts span { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); border: 1px solid var(--line); }
+  @media (min-width: 900px) { .split { grid-template-columns: 1fr 1fr; gap: 72px; } }
+  .reveal-art { display: flex; justify-content: center; }
+  .shot { width: min(330px, 82vw); background: var(--wine); border-radius: 48px; padding: 12px; box-shadow: 0 40px 70px -40px rgba(90, 20, 40, .7); }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 37px; aspect-ratio: 600 / 1300; }
+  .heart { width: 72px; height: 72px; display: block; margin-bottom: 8px; }
+  .heart .seed-a, .heart .seed-b { transition: transform .5s cubic-bezier(.3, 1.3, .5, 1), opacity .4s ease; }
+  .heart:not(.in) .seed-a { transform: translateX(-34px); opacity: 0; }
+  .heart:not(.in) .seed-b { transform: translateX(34px); opacity: 0; }
+  .facts { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+  .facts li { display: flex; gap: 14px; align-items: baseline; font-size: 18px; line-height: 1.55; }
+  .facts .seed { color: var(--red); transform: rotate(-24deg) translateY(2px); }
 
-  /* The reveal, the app's one big animation: the seeds meet inside the heart. */
-  .heart { width: 64px; height: 64px; flex: none; }
-  .heart .seed-a { animation: in-a 1.6s .4s cubic-bezier(.2, 1.4, .4, 1) both; }
-  .heart .seed-b { animation: in-b 1.6s .4s cubic-bezier(.2, 1.4, .4, 1) both; }
-  @keyframes in-a { from { transform: translateX(-38px); opacity: 0; } to { transform: none; opacity: 1; } }
-  @keyframes in-b { from { transform: translateX(38px); opacity: 0; } to { transform: none; opacity: 1; } }
+  /* --------------------------------------------------- questions (both forms) */
+  .qhead { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 24px; }
+  .switch { display: inline-grid; grid-template-columns: 1fr 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px; gap: 4px; }
+  .switch button { font: 600 18px/1.2 var(--display); min-height: 48px; min-width: 112px; padding: 6px 18px; border-radius: 999px; border: 0; background: transparent; color: var(--ink); cursor: pointer; transition: background .3s ease, color .3s ease; }
+  .switch button[aria-pressed="true"] { background: var(--red); color: var(--white); }
+  .qgrid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 14px; }
+  @media (min-width: 700px) { .qgrid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1040px) { .qgrid { grid-template-columns: repeat(3, 1fr); } }
+  .qgrid li { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 22px 24px; display: grid; gap: 10px; align-content: start; box-shadow: var(--shadow); }
+  .qgrid small { font-size: 15px; font-weight: 500; color: var(--accent-text); display: inline-flex; align-items: center; gap: 8px; }
+  .qgrid small i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 1px solid rgba(42, 14, 21, .15); }
+  .qgrid p { margin: 0; font: 600 22px/1.35 var(--display); }
+  .qgrid [data-f] { display: none; }
+  .show-f .qgrid [data-m] { display: none; }
+  .show-f .qgrid [data-f] { display: block; }
 
-  .genders { display: grid; gap: 16px; margin-top: 44px; }
-  @media (min-width: 760px) { .genders { grid-template-columns: 1fr 1fr; } }
-  .genders div { border: 1px solid var(--line); border-radius: 32px; padding: 30px; }
-  .genders small { color: var(--red); font-weight: 700; font-size: 15px; }
-  .genders b { display: block; font: 600 clamp(30px, 4vw, 42px)/1.2 var(--display); margin-top: 10px; }
+  /* ------------------------------------------------------------ games */
+  .games { display: grid; gap: 16px; margin-top: 48px; }
+  @media (min-width: 900px) { .games { grid-template-columns: repeat(3, 1fr); } }
+  .game { border-radius: 32px; padding: 28px; display: grid; gap: 12px; align-content: start; position: relative; overflow: hidden; min-height: 340px; }
+  .game h3 { font: 700 30px/1.15 var(--display); margin: 0; }
+  .game .head p { margin: 0; font-size: 17px; line-height: 1.55; }
+  .game { grid-template-columns: 1fr auto; }
+  .game .art { width: clamp(84px, 22vw, 116px); height: auto; grid-column: 2; grid-row: 1; }
+  .game .head { grid-column: 1; grid-row: 1; display: grid; gap: 10px; align-content: start; }
+  .game .card { grid-column: 1 / -1; }
+  .game .card { background: rgba(255, 255, 255, .92); color: #2A0E15; border-radius: 20px; padding: 14px 16px; margin-top: auto; font-size: 16px; line-height: 1.45; align-self: end; }
+  .game .card b { font: 600 18px/1.35 var(--display); display: block; margin-bottom: 8px; }
+  .opts-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .opts-row span { border-radius: 999px; padding: 4px 12px; font-size: 15px; border: 1px solid currentColor; }
+  .opts-row span.pick { background: #1D6A80; border-color: #1D6A80; color: #FFFFFF; }
+  .game.match { background: #1D6A80; color: #FFFFFF; }
+  .game.who { background: #FFD25E; color: #2A0E15; }
+  .game.shab { background: #FFE3D3; color: #2A0E15; }
+  .who-pick { display: flex; gap: 10px; }
+  .who-pick span { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 700 17px var(--body); }
+  .who-pick .a { background: #D7263D; color: #FFFFFF; }
+  .who-pick .b { background: #F59AAE; color: #2A0E15; }
 
-  .packs { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
-  .packs span { border: 1.5px solid var(--red); color: var(--red-deep); border-radius: 999px; padding: 10px 22px; font: 600 19px var(--display); }
-  .packs span.free { background: var(--red); color: var(--white); }
+  /* ------------------------------------------------------------ packs */
+  .shelves { list-style: none; margin: 48px 0 0; padding: 0; display: grid; gap: 14px; }
+  @media (min-width: 760px) { .shelves { grid-template-columns: 1fr 1fr; } }
+  .shelf { border-radius: 24px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; min-height: 132px; color: #2A0E15; }
+  .shelf div { flex: 1; display: grid; gap: 4px; }
+  .shelf h3 { font: 600 24px/1.25 var(--display); margin: 0; }
+  .shelf p { margin: 0; font-size: 16px; line-height: 1.45; }
+  .shelf small { font-size: 15px; font-weight: 500; }
+  .shelf img { width: 104px; height: auto; flex: none; }
+  .shelf.daily { background: #D7263D; color: #FFFFFF; }
+  .shelf.deep { background: #5A1428; color: #FFFFFF; }
+  .tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, .7); color: #2A0E15; border-radius: 999px; padding: 2px 10px; font-size: 15px; font-weight: 500; width: fit-content; }
+  .launch-line { margin: 20px 0 0; font-size: 16px; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+  .launch-line .seed { color: var(--red); }
 
-  .join { background: var(--red); color: var(--white); }
-  .join h2 { color: var(--white); }
-  .join .eyebrow { color: var(--blush); }
-  .join p.intro { color: var(--blush); }
-  .join form { display: grid; gap: 14px; margin-top: 36px; max-width: 520px; }
+  /* ------------------------------------------------------------ made here */
+  .here { display: grid; gap: 16px; margin-top: 48px; }
+  @media (min-width: 760px) { .here { grid-template-columns: 1fr 1fr; } }
+  .here article { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 26px 28px; display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; box-shadow: var(--shadow); }
+  .here img { grid-row: span 2; width: 84px; height: auto; align-self: start; }
+  .here h3 { font: 600 23px/1.3 var(--display); margin: 0; }
+  .here p { margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted); }
+  .hebdate { font: 700 26px/1 var(--display); color: var(--red); grid-row: span 2; width: 84px; text-align: center; padding-top: 6px; }
+  @media (max-width: 560px) {
+    .here article { grid-template-columns: 1fr; }
+    .here img, .hebdate { grid-row: auto; }
+    .hebdate { width: auto; text-align: start; padding: 0 0 6px; }
+  }
+
+  /* ------------------------------------------------------------ faq */
+  .faq { display: grid; gap: 12px; margin-top: 40px; max-width: 820px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 0 24px; }
+  .faq summary { list-style: none; cursor: pointer; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font: 600 20px/1.35 var(--display); padding-block: 14px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: ''; width: 12px; height: 12px; border-inline-end: 2.5px solid var(--red); border-bottom: 2.5px solid var(--red); transform: rotate(-45deg) translateY(-3px); transition: transform .3s ease; flex: none; margin-inline-end: 4px; }
+  .faq details[open] summary::after { transform: rotate(135deg) translateY(-3px); }
+  .faq details p { margin: 0 0 20px; font-size: 17px; line-height: 1.65; color: var(--muted); max-width: 64ch; }
+
+  /* ------------------------------------------------------------ join */
+  .join { background: var(--red); color: var(--on-red); }
+  .join .eyebrow { color: var(--on-red-soft); }
+  .join p.intro { color: var(--on-red); }
   .join .split { align-items: center; }
-  .join .mark-big { display: none; justify-content: center; }
-  @media (min-width: 860px) { .join .mark-big { display: flex; } }
-  .join .mark-big svg { width: min(340px, 80%); height: auto; filter: drop-shadow(0 30px 50px rgba(80, 0, 15, .35)); }
-  .join label { display: grid; gap: 8px; font-weight: 500; font-size: 15px; }
-  .join input { font: inherit; min-height: 58px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--white); color: var(--ink); }
-  .join input:focus { outline: 3px solid var(--pink); outline-offset: 2px; }
-  .join .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-  .join .small { font-size: 15px; color: var(--blush); margin: 4px 0 0; }
-  .join .small a { color: var(--white); }
-  .done { background: var(--white); color: var(--red-deep); border-radius: 28px; padding: 22px 26px; margin-top: 36px; max-width: 520px; font: 600 20px/1.4 var(--display); }
-  .error { color: var(--white); background: var(--red-dark); border-radius: 18px; padding: 10px 16px; margin: 0; font-size: 15px; }
+  .join .pilot { margin-top: 32px; }
+  .join .stores { margin-top: 32px; }
+  .couple { display: flex; justify-content: center; }
+  .couple img { width: min(440px, 70%); height: auto; }
 
-  .site-foot { padding-block: 36px; font-size: 15px; }
-  .site-foot .wrap { display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center; justify-content: space-between; }
-  .site-foot nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
-  .site-foot a { color: var(--red-deep); text-decoration: none; }
+  .site-foot { padding-block: 40px; font-size: 15px; border-top: 1px solid var(--line); }
+  .site-foot .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: space-between; }
+  .site-foot nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+  .site-foot a { color: var(--ink); text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
+  .site-foot a:hover { color: var(--accent-text); }
+  .site-foot .brand { color: var(--red); }
+  .site-foot .copy { color: var(--muted); width: 100%; margin: 0; }
 
-  .rise { animation: rise .8s cubic-bezier(.2, .8, .2, 1) both; }
-  .rise.d2 { animation-delay: .12s; } .rise.d3 { animation-delay: .24s; }
-  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .rise, .heart .seed-a, .heart .seed-b { animation: none; } .btn { transition: none; } }
+  /* Sections settle in softly as they come into view. */
+  .js .rise { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+  .js .rise.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .rise { opacity: 1; transform: none; transition: none; }
+    .heart .seed-a, .heart .seed-b { transition: none; transform: none !important; opacity: 1 !important; }
+    .btn, .phones label, .switch button, .faq summary::after { transition: none; }
+  }
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <a href="./" class="brand"><svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#8E1426"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#D7263D"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#FFE4E9"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg><span>שנינו</span></a>
-    <a href="#join" class="btn btn-red">להצטרף לרשימה</a>
+    <a href="./" class="brand" aria-label="שנינו, לעמוד הבית"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#5A1428"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#D7263D"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#FFE4E9"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg><span>שנינו</span></a>
+    <nav class="nav-links" aria-label="באתר">
+      <a href="#how">איך זה עובד</a>
+      <a href="#questions">שאלות לזוגות</a>
+      <a href="#games">משחקים</a>
+      <a href="#faq">שאלות נפוצות</a>
+    </nav>
+    <a href="#join" class="btn btn-red" data-cta>להצטרף לפיילוט</a>
   </div>
 </header>
 
+<main>
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow">אפליקציה לזוגיות · בקרוב</span>
-      <h1>שאלה אחת.<span>שתי תשובות.</span></h1>
-      <p class="lead">כל ערב מגיעה לשניכם אותה שאלה. כל אחד עונה לבד, והתשובות נפתחות רק כששניכם עניתם.</p>
-      <a href="#join" class="btn btn-white">להצטרף לרשימת ההמתנה</a>
-      <p class="note">הזוגות הראשונים ברשימה יוזמנו לנסות את שנינו לפני כולם.</p>
+      <ul class="chip-row" aria-label="בקצרה">
+        <li class="pilot-only"><span class="seed" aria-hidden="true"></span>פיילוט פתוח</li>
+        <li>iPhone ו־Android</li>
+        <li>בחינם</li>
+      </ul>
+      <h1><span class="kicker">אפליקציה לזוגות, בעברית</span><span class="big">שאלה אחת ביום. <span>שתי תשובות.</span></span></h1>
+      <p class="lead">כל יום מגיעה לשניכם אותה שאלה. כל אחד עונה מהטלפון שלו, והתשובה של השני נפתחת רק אחרי שעניתם.</p>
+
+      <div class="pilot pilot-only" id="pilot-top">
+        <h2>להצטרף לפיילוט</h2>
+        <p class="sub">משאירים מייל, ואנחנו שולחים לכם הזמנה אישית להתקנה.</p>
+        <form data-pilot novalidate></form>
+      </div>
+      <div class="stores" data-stores></div>
     </div>
-    <div class="hero-art rise d2" aria-label="מסך ״היום״ באפליקציה" role="img">
-      <div class="phone"><div class="screen">
-        <div class="greet"><div><small>ערב טוב, יום שלישי</small><b>יואב</b></div><div class="avatars"><span class="av me">י</span><span class="av them">ד</span></div></div>
-        <div class="week"><div>א׳<i class="on"></i></div><div>ב׳<i class="on"></i></div><div>ג׳<i class="today"></i></div><div>ד׳<i></i></div><div>ה׳<i></i></div><div>ו׳<i></i></div><div>ש׳<i></i></div></div>
-        <div class="qcard"><small>השאלה של היום</small><b>מה הדבר הכי טוב שקרה לך היום?</b>
-          <div class="panels"><div class="panel"><strong>אני</strong>עוד לא ענית</div><div class="panel"><strong>דנה</strong>ענתה ב־21:04</div></div>
-          <div class="answer">לענות על השאלה</div></div>
-        <div class="locked">התשובה של דנה נעולה. כשתענה, היא תיפתח.<span></span><span></span></div>
-        <div class="tabs" aria-hidden="true"><span class="on">היום</span><span>חבילות</span><span>היסטוריה</span><span>אנחנו</span></div>
-      </div></div>
+
+    <div class="hero-art">
+      <div class="phone"><img src="img/today.jpg" width="600" height="1300" alt="מסך היום באפליקציה: השאלה ״מה הדבר הכי טוב שקרה לך היום?״, מאיה כבר ענתה והתשובה שלה נעולה עד שנועם יענה." fetchpriority="high"></div>
+      <div class="float n1" aria-hidden="true"><span class="icon"><svg viewBox="0 0 100 100"><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#FFF8F5"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#D7263D"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg></span><span><b>שנינו</b>מאיה כבר ענתה ומחכה לך</span></div>
+      <div class="float n2" aria-hidden="true"><span class="seedbig"></span><span><b>7 ימים ברצף</b>ימים ששניכם עניתם</span></div>
     </div>
   </div>
 </section>
 
-<section class="block">
+<section class="block" id="how">
   <div class="wrap">
-    <span class="eyebrow">איך זה עובד</span>
-    <h2>כמה דקות בערב, רק שלכם</h2>
+    <p class="eyebrow"><span class="seed"></span>איך זה עובד</p>
+    <h2 class="title">כמה דקות ביום, רק שלכם</h2>
+    <p class="intro">בלי הגדרות מסובכות. מתחברים פעם אחת, ומשם השאלה מגיעה לבד.</p>
     <ol class="steps">
-      <li><span class="num">01</span><h3>מתחברים פעם אחת</h3><p>אחד שולח לשני קוד בוואטסאפ, השני מקליד אותו, ואתם מחוברים.</p></li>
-      <li><span class="num">02</span><h3>כל אחד עונה לבד</h3><p>בשעה שבחרתם מגיעה שאלה חדשה. אף אחד לא רואה את התשובה של השני מראש.</p></li>
-      <li><span class="num">03</span><h3>רואים יחד</h3><p>כששניכם עניתם, שתי התשובות נפתחות יחד. מגיבים, ושומרים על רצף של ערבים.</p></li>
+      <li class="rise"><span class="num"><span>1</span></span><h3>מתחברים בקוד</h3><p>אחד שולח לשני קוד הזמנה בוואטסאפ, השני מקליד אותו, ואתם מחוברים. אייפון ואנדרואיד יחד, בלי בעיה.</p></li>
+      <li class="rise"><span class="num"><span>2</span></span><h3>כל אחד עונה לבד</h3><p>בשעה שבחרתם מגיעה תזכורת עם השאלה של היום. עונים מתי שנוח, ואף אחד לא רואה את התשובה של השני מראש.</p></li>
+      <li class="rise"><span class="num"><span>3</span></span><h3>נפתח לשניכם יחד</h3><p>כששניכם עניתם, שתי התשובות נפתחות. מגיבים באימוג׳י, כותבים משהו בחזרה, ושומרים על רצף.</p></li>
     </ol>
   </div>
 </section>
 
 <section class="block reveal">
   <div class="wrap split">
-    <div>
-      <span class="eyebrow">הרגע ששניכם עניתם</span>
-      <h2>שני גרעינים, רימון אחד</h2>
-      <p class="intro">התשובות נפתחות רק כששניכם עניתם, כך שכל אחד כותב מה שהוא באמת חושב. ואז מגלים מה כתב השני.</p>
+    <div class="rise">
+      <svg class="heart" viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#5A1428"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#D7263D"/><ellipse class="seed-a" cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#FFE4E9"/><ellipse class="seed-b" cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg>
+      <p class="eyebrow"><span class="seed"></span>הרגע ששניכם עניתם</p>
+      <h2 class="title">שני גרעינים, רימון אחד</h2>
+      <p class="intro">כי אף אחד לא רואה מה השני כתב, כל אחד עונה מה שהוא באמת חושב. ואז מגלים.</p>
+      <ul class="facts">
+        <li><span class="seed"></span><span>התשובה של בן או בת הזוג נעולה עד שעניתם על אותה שאלה. זה נאכף בשרת, לא רק על המסך.</span></li>
+        <li><span class="seed"></span><span>כששניכם עונים באותו זמן, החשיפה נפתחת בשני הטלפונים יחד.</span></li>
+        <li><span class="seed"></span><span>כל מה שעניתם נשמר להיסטוריה של שניכם, מסודר לפי חודשים.</span></li>
+      </ul>
     </div>
-    <div class="duo" role="img" aria-label="דוגמה: שתי תשובות שנפתחו יחד">
-      <div class="head">
-        <svg class="heart" viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#8E1426"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#D7263D"/><ellipse class="seed-a" cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#FFE4E9"/><ellipse class="seed-b" cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg>
-        שניכם עניתם
-      </div>
-      <div class="bubble me"><small>יואב</small>הקפה של הבוקר, לפני שכולם התעוררו</div>
-      <div class="bubble them"><small>דנה</small>ההודעה ששלחת לי באמצע הישיבה</div>
-      <div class="reacts" aria-hidden="true"><span>❤️</span><span>😂</span><span>🥹</span><span>🔥</span><span>🤗</span></div>
-    </div>
+    <div class="reveal-art rise"><div class="shot"><img src="img/reveal.jpg" width="600" height="1300" loading="lazy" decoding="async" alt="מסך החשיפה: ״שניכם עניתם״, 7 ימים ברצף, והתשובות של נועם ומאיה זו לצד זו."></div></div>
   </div>
 </section>
 
-<section class="block">
+<section class="block" id="questions">
   <div class="wrap">
-    <span class="eyebrow">בעברית, באמת</span>
-    <h2>כל שאלה נכתבה פעמיים</h2>
-    <p class="intro">פעם בלשון זכר ופעם בלשון נקבה, כדי שכל אחד מכם יקרא שאלה שמדברת אליו. בלי תרגום, בלי לוכסנים.</p>
-    <div class="genders">
-      <div><small>אליו</small><b>למה אתה הכי מחכה השבוע?</b></div>
-      <div><small>אליה</small><b>למה את הכי מחכה השבוע?</b></div>
+    <div class="qhead">
+      <div>
+        <p class="eyebrow"><span class="seed"></span>שאלות לזוגות</p>
+        <h2 class="title">כל שאלה נכתבה פעמיים</h2>
+        <p class="intro">פעם בלשון זכר ופעם בלשון נקבה, כדי שכל אחד יקרא שאלה שמדברת אליו. בלי לוכסנים. יותר מ־1,200 שאלות, הנה כמה מהן:</p>
+      </div>
+      <div class="switch" role="group" aria-label="להציג את השאלות">
+        <button type="button" aria-pressed="true" data-form="m">אליו</button>
+        <button type="button" aria-pressed="false" data-form="f">אליה</button>
+      </div>
+    </div>
+    <ul class="qgrid" aria-live="polite">
+      <li class="rise"><small><i style="background:#D7263D"></i>השאלה היומית</small><p data-m>לאיזה דבר קטן אתה מחכה כל יום?</p><p data-f>לאיזה דבר קטן את מחכה כל יום?</p></li>
+      <li class="rise"><small><i style="background:#FFF1C9"></i>להכיר באמת</small><p data-m>מה רצית להיות כשהיית קטן?</p><p data-f>מה רצית להיות כשהיית קטנה?</p></li>
+      <li class="rise"><small><i style="background:#5A1428"></i>שיחות עומק</small><p data-m>מה אתה הכי צריך כשקשה לך?</p><p data-f>מה את הכי צריכה כשקשה לך?</p></li>
+      <li class="rise"><small><i style="background:#CFEFEA"></i>רק בצחוק</small><p data-m>מה השיר שאתה שר במקלחת כשאף אחד לא שומע?</p><p data-f>מה השיר שאת שרה במקלחת כשאף אחד לא שומע?</p></li>
+      <li class="rise"><small><i style="background:#E6E0F8"></i>זיכרונות שלנו</small><p data-m>איזו הודעה ששלחתי לך אתה זוכר עד היום?</p><p data-f>איזו הודעה ששלחתי לך את זוכרת עד היום?</p></li>
+      <li class="rise"><small><i style="background:#FFD3DC"></i>מאורסים</small><p data-m>מה הדבר הראשון שתרצה להגיד מתחת לחופה?</p><p data-f>מה הדבר הראשון שתרצי להגיד מתחת לחופה?</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="games" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow"><span class="seed"></span>משחקים לזוגות</p>
+    <h2 class="title">וכשבא לכם לשחק</h2>
+    <p class="intro">שלושה משחקים לשניים, עם יותר מ־200 שאלות בכל אחד. אפשר שאלה אחת, ואפשר בליץ של עשר ברצף.</p>
+    <div class="games">
+      <article class="game match rise">
+        <img class="art" src="art/match.svg" width="120" height="109" alt="" loading="lazy">
+        <div class="head"><h3>על אותו גל</h3><p>כל אחד בוחר תשובה, ואז רואים אם חשבתם אותו דבר.</p></div>
+        <div class="card"><b>שבת בבוקר, מה הכי טוב?</b><div class="opts-row"><span>לישון עד מאוחר</span><span class="pick">טיול בטבע</span><span>ארוחת בוקר בחוץ</span><span>לא לזוז מהספה</span></div></div>
+      </article>
+      <article class="game who rise">
+        <img class="art" src="art/who.svg" width="120" height="109" alt="" loading="lazy">
+        <div class="head"><h3>מי מאיתנו?</h3><p>כל אחד מצביע על אחד משניכם, ואז רואים אם הסכמתם.</p></div>
+        <div class="card"><b>מי מאיתנו ילך לאיבוד גם עם וייז?</b><div class="who-pick" aria-hidden="true"><span class="a">נ</span><span class="b">מ</span></div></div>
+      </article>
+      <article class="game shab rise">
+        <img class="art" src="art/shabbat.svg" width="120" height="109" alt="" loading="lazy">
+        <div class="head"><h3>שולחן שבת</h3><p>טלפון אחד ביניכם בערב שישי: עונים בקול בתורות, וגם האורחים משתתפים.</p></div>
+        <div class="card"><b>איזה מאכל של שישי מזכיר לך את הילדות?</b>שאלה לכל מי שסביב השולחן.</div>
+      </article>
     </div>
   </div>
 </section>
 
 <section class="block" style="padding-top:0">
   <div class="wrap">
-    <span class="eyebrow">מה בפנים</span>
-    <h2>שאלה לכל תקופה</h2>
-    <p class="intro">השאלה היומית תמיד בחינם. לצידה חבילות לכל שלב, מההיכרות הראשונה ועד החתונה, ואפשר לשאול את בן או בת הזוג עוד שאלה מתוכן.</p>
-    <div class="packs"><span class="free">השאלה היומית</span><span>להכיר באמת</span><span>שולחן שבת</span><span>שיחות עומק</span><span>מאורסים</span><span>מילואים</span></div>
+    <p class="eyebrow"><span class="seed"></span>חבילות שאלות</p>
+    <h2 class="title">שאלה לכל תקופה בקשר</h2>
+    <p class="intro">מההיכרות הראשונה ועד הילדים. אפשר לשאול את בן או בת הזוג עוד שאלות מתוך החבילות, או לכתוב שאלה משלכם.</p>
+    <ul class="shelves">
+      <li class="shelf daily rise"><div><h3>השאלה היומית</h3><p>שאלה חדשה כל יום, לשניכם</p><span class="tag">תמיד בחינם</span></div><img src="art/bubbles.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf rise" style="background:#E3EAD5"><div><h3>מילואים</h3><p>כשאחד מכם רחוק מהבית</p><span class="tag">תמיד בחינם</span></div><img src="art/tags.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf rise" style="background:#FFF1C9"><div><h3>להכיר באמת</h3><p>ילדות, משפחה, ומה שעוד לא סיפרתם</p><small>30 שאלות</small></div><img src="art/album.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf rise" style="background:#CFEFEA"><div><h3>רק בצחוק</h3><p>שאלות קלילות לערב שצריך בו חיוך</p><small>30 שאלות</small></div><img src="art/funny.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf deep rise"><div><h3>שיחות עומק</h3><p>כשרוצים ללכת רחוק יותר</p><small>30 שאלות</small></div><img src="art/deep.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf rise" style="background:#E6E0F8"><div><h3>זיכרונות שלנו</h3><p>הדייט הראשון, הטיול הראשון, והרגע שידעתם</p><small>30 שאלות</small></div><img src="art/memories.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf rise" style="background:#DDEDF8"><div><h3>הבית שלנו</h3><p>השגרה, ההרגלים והבית שבונים יחד</p><small>30 שאלות</small></div><img src="art/home.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf rise" style="background:#FFD3DC"><div><h3>מאורסים</h3><p>בין הטבעת לחופה</p><small>30 שאלות</small></div><img src="art/ring.svg" alt="" width="104" height="95" loading="lazy"></li>
+      <li class="shelf rise" style="background:#EFE3F7"><div><h3>כשהילדים ישנים</h3><p>עליכם, לא רק על הילדים</p><small>30 שאלות</small></div><img src="art/parents.svg" alt="" width="104" height="95" loading="lazy"></li>
+    </ul>
+    <p class="launch-line pilot-only"><span class="seed"></span>בפיילוט כל החבילות והמשחקים פתוחים בחינם.</p>
+  </div>
+</section>
+
+<section class="block reveal">
+  <div class="wrap">
+    <p class="eyebrow"><span class="seed"></span>נבנתה כאן</p>
+    <h2 class="title">אפליקציה ישראלית לזוגות</h2>
+    <p class="intro">עם הלוח העברי, השבת, החגים והמילואים.</p>
+    <div class="here">
+      <article class="rise"><img src="art/shabbat.svg" alt="" width="84" height="76" loading="lazy"><h3>שומרים שבת?</h3><p>מסמנים פעם אחת, ובשבת ובחגים לא מגיעות התראות. הרצף של שניכם מדלג על הימים האלה בלי להישבר.</p></article>
+      <article class="rise"><span class="hebdate" aria-hidden="true">ט׳ בחשוון</span><h3>תאריך עברי</h3><p>הברכה בפתיחה כוללת את התאריך העברי, ואומרת ״שבת שלום״ בשבת. בחגים מגיעה שאלה של החג במקום השאלה היומית.</p></article>
+      <article class="rise"><img src="art/tags.svg" alt="" width="84" height="76" loading="lazy"><h3>כשאחד במילואים</h3><p>חבילת מילואים חינמית לכל זוג, עם ניסוח נפרד למי שבבית ולמי שרחוק.</p></article>
+      <article class="rise"><img src="art/tree.svg" alt="" width="84" height="76" loading="lazy"><h3>הימים שלכם</h3><p>כמה זמן אתם ביחד, כמה ערבי שישי עברו, וספירה לאחור ליום השנה ולימי ההולדת של שניכם.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="wrap">
+    <p class="eyebrow"><span class="seed"></span>שאלות נפוצות</p>
+    <h2 class="title">מה עוד כדאי לדעת</h2>
+    <div class="faq">
+      <details><summary>מה זה שנינו?</summary><p>אפליקציה לזוגות בעברית. כל יום מגיעה לשניכם אותה שאלה, כל אחד עונה מהטלפון שלו, והתשובה של בן או בת הזוג נפתחת רק אחרי שעניתם בעצמכם. יש גם חבילות שאלות לכל שלב בקשר ומשחקים לשניים.</p></details>
+      <details><summary>כמה זה עולה?</summary><p>בפיילוט הכול פתוח בחינם. גם אחרי ההשקה השאלה היומית תישאר בחינם. בהמשך יהיה מנוי שפותח את החבילות וההיסטוריה, ומנוי אחד מספיק לשניכם.</p></details>
+      <details><summary>איך מצטרפים לפיילוט?</summary><p>משאירים כאן מייל ובוחרים אייפון או אנדרואיד. נשלח לכם הזמנה אישית: באייפון דרך TestFlight, האפליקציה של אפל לניסוי אפליקציות לפני שהן בחנות, ובאנדרואיד דרך Google Play. באנדרואיד צריך לכתוב את כתובת ה־Gmail שמחוברת לטלפון.</p></details>
+      <details><summary>צריך ששנינו נוריד את האפליקציה?</summary><p>כן, כל אחד בטלפון שלו. אחד שולח לשני קוד הזמנה בוואטסאפ, השני מקליד אותו, ואתם מחוברים. אייפון ואנדרואיד מתחברים זה לזה בלי בעיה.</p></details>
+      <details><summary>מי רואה את התשובות שלנו?</summary><p>רק שניכם. התשובה של בן או בת הזוג נשארת נעולה עד שעניתם על אותה שאלה, והכלל הזה נאכף בשרת ולא רק במסך. אין באפליקציה פרסומות או כלי מעקב, ולא מוכרים מידע. הפרטים ב<a href="privacy.html">מדיניות הפרטיות</a>.</p></details>
+      <details><summary>זה מתאים גם לזוגות חד־מיניים?</summary><p>כן. כל אחד בוחר אם לפנות אליו בלשון זכר או נקבה, וכל שאלה נכתבה בשתי הלשונות.</p></details>
+      <details><summary>אנחנו שומרים שבת. זה מסתדר?</summary><p>כן. מי שמסמן ששומר שבת לא מקבל התראות בשבת ובחגים, והרצף של שניכם מדלג על הימים האלה בלי להישבר.</p></details>
+    </div>
   </div>
 </section>
 
 <section class="block join" id="join">
   <div class="wrap split">
     <div>
-    <span class="eyebrow">רשימת ההמתנה</span>
-    <h2>רוצים להיות מהראשונים?</h2>
-    <p class="intro">שנינו עוד לא בחנויות. השאירו שם ומייל, ונכתוב לכם כשאפשר להוריד. הזוגות הראשונים ברשימה יוזמנו לנסות אותה לפני כולם.</p>
-    <form id="waitlist" novalidate>
-      <label>שם פרטי<input name="name" autocomplete="given-name" maxlength="60" required></label>
-      <label>מייל<input name="email" type="email" dir="ltr" autocomplete="email" maxlength="200" required></label>
-      <!-- A trap for bots: people never see or fill this field. -->
-      <label class="trap" aria-hidden="true">אתר<input name="website" tabindex="-1" autocomplete="off"></label>
-      <p class="error" id="error" hidden role="alert"></p>
-      <button type="submit" class="btn btn-white">לשמור לי מקום</button>
-      <p class="small">נשתמש בכתובת רק כדי לכתוב לכם על שנינו. אפשר לבקש שנמחק אותה בכל רגע. <a href="privacy.html">מדיניות הפרטיות</a></p>
-    </form>
-    <p class="done" id="thanks" hidden role="status">שמרנו לכם מקום. נכתוב לכם כששנינו תהיה מוכנה.</p>
+      <p class="eyebrow pilot-only"><span class="seed"></span>הפיילוט פתוח</p>
+      <h2 class="title"><span class="pilot-only">רוצים לנסות ראשונים?</span><span class="stores-title" hidden>שנינו בחנויות</span></h2>
+      <p class="intro pilot-only">שנינו עוד לא בחנויות. בפיילוט אתם מקבלים את האפליקציה המלאה בחינם, ואנחנו מקשיבים לכל הערה שלכם.</p>
+      <div class="pilot pilot-only" id="pilot-bottom">
+        <h2>להצטרף לפיילוט</h2>
+        <p class="sub">כל אחד מכם נרשם עם הטלפון שלו.</p>
+        <form data-pilot novalidate></form>
+      </div>
+      <div class="stores" data-stores></div>
     </div>
-    <div class="mark-big" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#8E1426"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#FFF8F5"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#D7263D"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg></div>
+    <div class="couple"><img src="art/couple-onred.svg" alt="" width="440" height="400" loading="lazy"></div>
   </div>
 </section>
+</main>
 
 <footer class="site-foot">
   <div class="wrap">
-    <a href="./" class="brand"><svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#8E1426"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#D7263D"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#FFE4E9"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg><span>שנינו</span></a>
-    <nav>
+    <a href="./" class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#5A1428"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#D7263D"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#FFE4E9"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg><span>שנינו</span></a>
+    <nav aria-label="קישורים">
       <a href="privacy.html">מדיניות הפרטיות</a>
       <a href="terms.html">תנאי השימוש</a>
-      <a href="https://www.instagram.com/shneinu.app/">אינסטגרם</a>
-      <a href="https://www.tiktok.com/@shneinu.app">טיקטוק</a>
+      <a href="https://www.instagram.com/shneinu.app/" rel="me">אינסטגרם</a>
+      <a href="https://www.tiktok.com/@shneinu.app" rel="me">טיקטוק</a>
       <a href="mailto:shneinu.couple@gmail.com">shneinu.couple@gmail.com</a>
     </nav>
+    <p class="copy">שנינו, אפליקציה לזוגות. נבנתה בישראל.</p>
   </div>
 </footer>
 
+<!-- One form, drawn into both places that ask for it. -->
+<template id="pilot-form">
+  <label class="field">מייל<input name="email" type="email" inputmode="email" dir="ltr" autocomplete="email" maxlength="200" placeholder="name@gmail.com" required></label>
+  <fieldset class="phones">
+    <legend>איזה טלפון יש לך?</legend>
+    <div class="opts">
+      <label><input type="radio" name="platform" value="ios" required><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>iPhone</label>
+      <label><input type="radio" name="platform" value="android"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 5h6"/></svg>Android</label>
+    </div>
+  </fieldset>
+  <p class="hint" data-hint="ios" hidden>ההזמנה תגיע במייל דרך TestFlight, האפליקציה של אפל לניסוי אפליקציות לפני שהן בחנות.</p>
+  <p class="hint" data-hint="android" hidden>כדאי לכתוב את כתובת ה־Gmail שמחוברת לטלפון: Google Play מזמין לפיילוט רק דרכה.</p>
+  <!-- A trap for bots: people never see or fill this field. -->
+  <label class="trap" aria-hidden="true">אתר<input name="website" tabindex="-1" autocomplete="off"></label>
+  <p class="error" role="alert" hidden></p>
+  <button type="submit" class="btn btn-red">להצטרף לפיילוט</button>
+  <p class="fine">נשתמש בכתובת רק כדי לשלוח לכם את ההזמנה ולכתוב לכם על שנינו. אפשר לבקש שנמחק אותה בכל רגע. <a href="privacy.html">מדיניות הפרטיות</a></p>
+</template>
+<template id="pilot-done">
+  <div class="done" role="status">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M39 28 L35 6 L44 14 L50 2 L56 14 L65 6 L61 28 Z" fill="#5A1428"/><path d="M50 93 C22 75 5 58 5 38 C5 22 16 12 30 12 C39 12 46 17 50 25 C54 17 61 12 70 12 C84 12 95 22 95 38 C95 58 78 75 50 93 Z" fill="#D7263D"/><ellipse cx="44.5" cy="51" rx="7.5" ry="11" transform="rotate(-24 44.5 51)" fill="#FFE4E9"/><ellipse cx="55.5" cy="51" rx="7.5" ry="11" transform="rotate(24 55.5 51)" fill="#F59AAE"/></svg>
+    <h3>נרשמתם לפיילוט</h3>
+    <p data-done></p>
+  </div>
+</template>
+
 <script>
-// Adds the visitor to the launch list through a public database function
-// (join_waitlist). The key below is Supabase's publishable key: it is meant
-// for web pages and apps, and can only call what row-level security allows.
+// After launch: put the two store links here, and every pilot form on the
+// page turns into download buttons (and the phone the visitor holds goes first).
+const STORES = { ios: '', android: '' };
+
+// The pilot signup goes to a public database function (join_pilot). The key
+// below is Supabase's publishable key: it is meant for web pages and apps, and
+// can only call what row-level security allows.
 const SUPABASE_URL = 'https://secpsqdadkbidtljpebe.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_VyPwLwK80Ahivclu8m70pg_BpLTSy8X';
-const form = document.getElementById('waitlist');
-const error = document.getElementById('error');
-const openedAt = Date.now();
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  error.hidden = true;
-  // Bots fill the hidden field, or send the form within a couple of seconds:
-  // they get the thank-you, and nothing is saved.
-  if (form.website.value || Date.now() - openedAt < 2500) {
-    form.hidden = true;
-    document.getElementById('thanks').hidden = false;
-    return;
+
+const ua = navigator.userAgent;
+const guess = /android/i.test(ua) ? 'android' : /iphone|ipad|ipod/i.test(ua) ? 'ios' : null;
+
+if (STORES.ios || STORES.android) {
+  document.documentElement.classList.add('launched');
+  const order = guess === 'android' ? ['android', 'ios'] : ['ios', 'android'];
+  const label = { ios: 'להורדה מ־App Store', android: 'להורדה מ־Google Play' };
+  for (const box of document.querySelectorAll('[data-stores]')) {
+    for (const store of order) {
+      if (!STORES[store] || (guess && guess !== store && STORES[guess])) continue;
+      const a = document.createElement('a');
+      a.className = 'btn ' + (box.closest('.hero, .join') ? 'btn-white' : 'btn-red');
+      a.href = STORES[store];
+      a.textContent = label[store];
+      box.append(a);
+    }
   }
-  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    error.textContent = 'צריך שם פרטי וכתובת מייל תקינה.';
-    error.hidden = false;
-    return;
-  }
-  const button = form.querySelector('button');
-  button.disabled = true;
-  try {
-    const response = await fetch(SUPABASE_URL + '/rest/v1/rpc/join_waitlist', {
-      method: 'POST',
-      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ p_name: name, p_email: email }),
+  for (const cta of document.querySelectorAll('[data-cta]')) cta.textContent = 'להורדה';
+  for (const t of document.querySelectorAll('.stores-title')) t.hidden = false;
+} else {
+  const openedAt = Date.now();
+  const formTemplate = document.getElementById('pilot-form');
+  const doneTemplate = document.getElementById('pilot-done');
+  document.querySelectorAll('form[data-pilot]').forEach((form, i) => {
+    form.append(formTemplate.content.cloneNode(true));
+    const hints = form.querySelectorAll('[data-hint]');
+    const error = form.querySelector('.error');
+    const showHint = () => hints.forEach((h) => (h.hidden = h.dataset.hint !== form.platform.value));
+    if (guess) form.querySelector(`input[value="${guess}"]`).checked = true;
+    showHint();
+    form.addEventListener('change', showHint);
+
+    const finish = (platform) => {
+      const done = doneTemplate.content.cloneNode(true);
+      done.querySelector('[data-done]').textContent = platform === 'android'
+        ? 'נשלח לכם בקרוב מייל עם הזמנה לבדיקה ב־Google Play. כדאי שגם בן או בת הזוג יירשמו כאן עם המייל שלהם.'
+        : 'נשלח לכם בקרוב מייל עם הזמנה ל־TestFlight. כדאי שגם בן או בת הזוג יירשמו כאן עם המייל שלהם.';
+      for (const el of form.closest('.pilot').querySelectorAll('h2, .sub')) el.hidden = true;
+      form.replaceWith(done);
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = form.email.value.trim();
+      const platform = form.platform.value;
+      error.hidden = true;
+      // Bots fill the hidden field, or send the form within a couple of seconds:
+      // they get the thank-you, and nothing is saved.
+      if (form.website.value || Date.now() - openedAt < 2500) return finish(platform);
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        error.textContent = 'צריך כתובת מייל תקינה.';
+        error.hidden = false;
+        form.email.focus();
+        return;
+      }
+      if (!platform) {
+        error.textContent = 'צריך לבחור iPhone או Android.';
+        error.hidden = false;
+        return;
+      }
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      button.textContent = 'רגע…';
+      try {
+        const response = await fetch(SUPABASE_URL + '/rest/v1/rpc/join_pilot', {
+          method: 'POST',
+          headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ p_email: email, p_platform: platform }),
+        });
+        if (!response.ok) throw new Error(String(response.status));
+        finish(platform);
+      } catch {
+        error.textContent = 'לא הצלחנו לשמור. כדאי לבדוק את הכתובת ולנסות שוב.';
+        error.hidden = false;
+        button.disabled = false;
+        button.textContent = 'להצטרף לפיילוט';
+      }
     });
-    if (!response.ok) throw new Error(String(response.status));
-    form.hidden = true;
-    document.getElementById('thanks').hidden = false;
-  } catch {
-    error.textContent = 'לא הצלחנו לשמור. כדאי לבדוק את הכתובת ולנסות שוב.';
-    error.hidden = false;
-    button.disabled = false;
-  }
+  });
+}
+
+// The questions in his words or hers.
+const switcher = document.querySelector('.switch');
+switcher.addEventListener('click', (event) => {
+  const button = event.target.closest('button');
+  if (!button) return;
+  for (const b of switcher.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b === button));
+  document.getElementById('questions').classList.toggle('show-f', button.dataset.form === 'f');
 });
+
+// Cards settle in as they come into view; the reveal's seeds meet in the heart.
+if ('IntersectionObserver' in window) {
+  const seen = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); seen.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.rise, .heart').forEach((el) => seen.observe(el));
+} else {
+  document.querySelectorAll('.rise, .heart').forEach((el) => el.classList.add('in'));
+}
 </script>
 </body>
 </html>

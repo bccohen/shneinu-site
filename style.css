@@ -1,42 +1,65 @@
-/* Shneinu's public pages: the app's reds and whites (see CLAUDE.md, Design).
-   One light look on purpose: pomegranate, deep red, blush and white. */
+/* Shneinu's public pages: the app's colours (see CLAUDE.md, Design), light
+   and night. Flat only: no gradients. The red blocks stay red at night. */
 :root {
-  --red: #D7263D;
-  --red-deep: #A9182C;
-  --red-dark: #8E1426;
+  --bg: #FFF8F5;
+  --surface: #FFFFFF;
+  --ink: #2A0E15;
+  --muted: #76505A;
+  --line: #F2DCE0;
   --blush: #FFE4E9;
+  --accent-text: #A9182C;
+  --red: #D7263D;
+  --red-panel: #B81D31;
+  --red-edge: #8E1426;
   --pink: #F59AAE;
-  --paper: #FFF8F5;
+  --wine: #5A1428;
   --white: #FFFFFF;
-  --ink: #1F0A10;
-  --line: #F6D5DB;
+  /* Text and marks on the red blocks, the same in both looks. */
+  --on-red: #FFFFFF;
+  --on-red-soft: #FFE4E9;
+  --shadow: 0 1px 2px rgba(90, 20, 40, .06), 0 18px 40px -24px rgba(169, 24, 44, .35);
   --display: 'Fredoka', 'Rubik', 'Arial Hebrew', sans-serif;
   --body: 'Rubik', 'Arial Hebrew', Arial, sans-serif;
-  color-scheme: light;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1A1012;
+    --surface: #26181B;
+    --ink: #F8EDEF;
+    --muted: #C9AEB4;
+    --line: #3A2529;
+    --blush: #3A1E25;
+    --accent-text: #FF8A9B;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 18px 40px -24px rgba(0, 0, 0, .7);
+  }
 }
 * { box-sizing: border-box; }
+/* Nothing may widen the page sideways: on phones that lets people zoom out
+   into empty space. `clip` (not `hidden`) keeps the sticky header working. */
+html, body { overflow-x: clip; max-width: 100%; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--white);
+  background: var(--bg);
   color: var(--ink);
   font: 18px/1.7 var(--body);
 }
-a { color: var(--red-deep); }
+a { color: var(--accent-text); }
 img, svg { max-width: 100%; }
 
 /* ------------------------------------------------ legal pages (privacy, terms) */
-.top { background: var(--red); color: var(--white); padding: 22px 20px 64px; }
-.top .brand { color: var(--white); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.top { background: var(--red); color: var(--on-red); padding: 22px 20px 64px; }
+.top .brand { color: var(--on-red); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
 .top .mark { font: 700 26px/1 var(--display); }
 .top h1 { font: 600 clamp(34px, 6vw, 52px)/1.1 var(--display); margin: 40px auto 8px; max-width: 760px; text-wrap: balance; }
-.top p { margin: 0 auto; max-width: 760px; color: var(--blush); }
+.top p { margin: 0 auto; max-width: 760px; color: var(--on-red-soft); }
 .top-inner { max-width: 760px; margin: 0 auto; }
 main.doc { max-width: 760px; margin: -40px auto 0; padding: 0 16px 56px; }
-.sheet { background: var(--white); border: 1px solid var(--line); border-radius: 32px; padding: 12px clamp(20px, 5vw, 44px) 32px; box-shadow: 0 24px 60px -30px rgba(169, 24, 44, .35); }
-h2 { font: 600 24px/1.3 var(--display); color: var(--red-deep); margin: 32px 0 8px; }
-p, li { max-width: 68ch; }
-ul { padding-inline-start: 22px; }
-li { margin: 8px 0; }
-li::marker { color: var(--red); }
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 32px; padding: 12px clamp(20px, 5vw, 44px) 32px; box-shadow: var(--shadow); }
+.sheet h2 { font: 600 24px/1.3 var(--display); color: var(--accent-text); margin: 32px 0 8px; }
+.sheet p, .sheet li { max-width: 68ch; }
+.sheet ul { padding-inline-start: 22px; }
+.sheet li { margin: 8px 0; }
+.sheet li::marker { color: var(--red); }
 footer.legal { text-align: center; font-size: 15px; margin-top: 28px; }
