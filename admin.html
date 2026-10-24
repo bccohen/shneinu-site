@@ -130,6 +130,7 @@ const ERRORS = {
   bad_testflight_url: 'הקישור של TestFlight צריך להיראות כך: https://testflight.apple.com/join/…',
   bad_play_url: 'הקישור של Google Play צריך להתחיל ב־https://play.google.com/',
   bad_transition: 'ההרשמה הזאת כבר טופלה. הרשימה רועננה.',
+  play_list_not_confirmed: 'צריך לאשר שהכתובות נוספו לרשימת הבודקים ב־Play Console לפני השליחה.',
 };
 
 let session = null;
@@ -265,10 +266,14 @@ function render() {
       row.append(b);
     };
     if (s.status === 'pending') {
-      const what = s.phones === 'android' ? 'מייל שהפיילוט באנדרואיד נפתח בקרוב' : s.phones === 'mixed' ? 'קישור ל־TestFlight והודעה שהאנדרואיד בקרוב' : 'קישור ל־TestFlight';
+      const androidOpen = s.phones !== 'ios' && !!settings.play_url;
+      const what = androidOpen
+        ? (s.phones === 'mixed' ? 'קישור ל־TestFlight וקישור ההצטרפות לפיילוט באנדרואיד' : 'קישור ההצטרפות לפיילוט באנדרואיד')
+        : s.phones === 'android' ? 'מייל שהפיילוט באנדרואיד נפתח בקרוב' : s.phones === 'mixed' ? 'קישור ל־TestFlight והודעה שהאנדרואיד בקרוב' : 'קישור ל־TestFlight';
       button('לאשר ולשלוח מייל', 'btn-red', async () => {
         if (!confirm(`לאשר את ${s.full_name}? יישלח ל־${s.email}: ${what}.`)) return;
-        await action({ action: 'approve', id: s.id });
+        if (androidOpen && !(await playListDone(s.android_emails))) return;
+        await action({ action: 'approve', id: s.id, play_list_confirmed: androidOpen });
       });
       button('לדחות', 'btn-line', () => action({ action: 'reject', id: s.id }));
     } else if (s.status === 'rejected') {
@@ -320,6 +325,13 @@ $('links-form').onsubmit = async (event) => {
   } catch (e) { say(errorText(e)); }
   await load();
 };
+// Before any mail with the Android join link: the addresses are copied, and
+// nothing is sent until Ben says they are on the test list in Play Console.
+async function playListDone(emails) {
+  const list = emails.join(', ');
+  try { await navigator.clipboard.writeText(list); } catch {}
+  return confirm(`לפני שנשלח את קישור ההצטרפות באנדרואיד:\n\n${list}\n\nהכתובות האלה הועתקו. הוספת אותן לרשימת הבודקים ב־Play Console (Testing, Closed testing, Testers, הרשימה pilot, ושמרת)?\n\nאישור = כן, הוספתי. ביטול = עוד לא, לא יישלח כלום.`);
+}
 $('copy-android').onclick = async () => {
   const emails = [...new Set(data.signups.filter((s) => s.status === 'approved').flatMap((s) => s.android_emails))];
   try {
@@ -332,10 +344,12 @@ $('copy-android').onclick = async () => {
 $('android-open').onclick = async () => {
   const { android_testers, settings } = data;
   const below = android_testers < settings.android_goal ? ` יש רק ${android_testers} מתוך ${settings.android_goal} בודקים.` : '';
-  if (!confirm(`לשלוח עכשיו את המייל שהפיילוט באנדרואיד נפתח?${below} חשוב שהכתובות כבר ברשימת הבודקים ב־Play Console.`)) return;
+  if (!confirm(`לשלוח עכשיו את המייל שהפיילוט באנדרואיד נפתח?${below}`)) return;
+  const waiting = data.signups.filter((s) => s.status === 'approved' && s.phones !== 'ios' && !s.android_started_at);
+  if (!(await playListDone([...new Set(waiting.flatMap((s) => s.android_emails))]))) return;
   say('');
   try {
-    const { sent } = await action({ action: 'android_open' });
+    const { sent } = await action({ action: 'android_open', play_list_confirmed: true });
     say(`נשלחו ${sent} מיילים.`);
   } catch (e) { say(errorText(e)); }
   await load();
