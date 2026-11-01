@@ -104,6 +104,15 @@
     </section>
 
     <section class="card">
+      <h2>גרסה חדשה באייפון</h2>
+      <p id="update-line" class="muted"></p>
+      <p class="muted">המספר של הגרסה החדשה נקבע במסוף: <code dir="ltr">npm run app-update -- set ios 5</code>. כל זוג מקבל את המייל פעם אחת לכל גרסה.</p>
+      <div class="row">
+        <button class="btn btn-red btn-small" id="update-mail">לשלוח ״יש גרסה חדשה״</button>
+      </div>
+    </section>
+
+    <section class="card">
       <h2>להוסיף זוג ידנית</h2>
       <p class="muted">לזוג שגייסת בעצמך, בלי הטופס באתר. הוא נשמר כמאושר, נספר בין בודקי האנדרואיד, ולא נשלח אליו מייל. את הכתובות של האנדרואיד צריך להוסיף ל־Play Console בעצמך.</p>
       <form id="add-form">
@@ -151,6 +160,7 @@ const ERRORS = {
   already_signed_up: 'המייל הזה כבר ברשימת הפיילוט.',
   bad_android_email: 'אחת מכתובות ה־Google לא נראית כמו כתובת מייל.',
   same_android_email: 'שתי כתובות ה־Google זהות.',
+  no_latest_build: 'עוד לא נקבעה גרסה חדשה לאייפון (npm run app-update -- set ios …).',
   play_list_not_confirmed: 'צריך לאשר שהכתובות נוספו לרשימת הבודקים ב־Play Console לפני השליחה.',
 };
 
@@ -242,6 +252,12 @@ function render() {
   const waiting = signups.filter((s) => s.status === 'approved' && s.phones !== 'ios' && !s.android_started_at);
   $('android-line').textContent = `${android_testers} מתוך ${settings.android_goal} בודקי אנדרואיד אושרו. ${waiting.length} זוגות מחכים למייל שהפיילוט נפתח.`;
   $('android-open').disabled = waiting.length === 0;
+  const build = settings.ios_latest_build;
+  const behind = build ? signups.filter((s) => s.status === 'approved' && s.phones !== 'android' && (s.update_mailed_build ?? 0) < build) : [];
+  $('update-line').textContent = build
+    ? `הגרסה החדשה באייפון: ${build}. ${behind.length} זוגות עם אייפון עוד לא קיבלו עליה מייל.`
+    : 'עוד לא נקבעה גרסה חדשה לאייפון.';
+  $('update-mail').disabled = behind.length === 0;
   $('no-mail').hidden = mailReady;
 
   const list = $('list');
@@ -389,6 +405,15 @@ $('android-open').onclick = async () => {
   say('');
   try {
     const { sent } = await action({ action: 'android_open', play_list_confirmed: true });
+    say(`נשלחו ${sent} מיילים.`);
+  } catch (e) { say(errorText(e)); }
+  await load();
+};
+$('update-mail').onclick = async () => {
+  if (!confirm(`לשלוח עכשיו לזוגות עם אייפון מייל שיש גרסה ${data.settings.ios_latest_build} ב־TestFlight?`)) return;
+  say('');
+  try {
+    const { sent } = await action({ action: 'update' });
     say(`נשלחו ${sent} מיילים.`);
   } catch (e) { say(errorText(e)); }
   await load();
