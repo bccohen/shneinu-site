@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["RW873T6QXM.com.shneinu.app"],
+        "components": [{ "/": "/join*", "comment": "Invitation links open the app with the code filled in." }]
+      }
+    ]
+  }
+}

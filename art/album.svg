@@ -12,6 +12,4 @@
 <path d="M90 112 H130" stroke="#F3B3C1" stroke-width="3" stroke-linecap="round"/>
 </g>
 <path d="M164 34 C164 30 167 27 171 27 C173 27 175 28 176 30 C177 28 179 27 181 27 C185 27 188 30 188 34 C188 40 182 44 176 49 C170 44 164 40 164 34 Z" fill="#D7263D"/>
-<path d="M44 52 Q44 58 50 58 Q44 58 44 64 Q44 58 38 58 Q44 58 44 52 Z" fill="#D7263D"/>
-<path d="M178 92 Q178 97 183 97 Q178 97 178 102 Q178 97 173 97 Q178 97 178 92 Z" fill="#FFFFFF" stroke="#5A1428" stroke-width="1.5" stroke-linejoin="round"/>
 </svg>
