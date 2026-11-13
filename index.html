@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>שנינו: אפליקציה לחיזוק הזוגיות, שאלה אחת ביום</title>
-<meta name="description" content="אפליקציה לחיזוק הזוגיות, בעברית: כל יום מגיעה לשניכם אותה שאלה, והתשובות נפתחות רק כששניכם עניתם. וכל יום ששניכם עונים, העץ שלכם גדל. לאייפון ולאנדרואיד.">
+<meta name="description" content="אפליקציה לחיזוק הזוגיות, בעברית: כל יום מגיעה לשניכם אותה שאלה, והתשובות נפתחות רק כששניכם עניתם. וכל שאלה ששניכם עונים עליה מגדלת את העץ שלכם, גם על מסך הבית. לאייפון ולאנדרואיד.">
 <link rel="canonical" href="https://shneinu.com/">
 <link rel="alternate" hreflang="he-IL" href="https://shneinu.com/">
 <link rel="alternate" hreflang="x-default" href="https://shneinu.com/">
@@ -181,6 +181,11 @@
   .tree .row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
   .tree .row .btn-line { color: #2A0E15; box-shadow: inset 0 0 0 2px #2A0E15; }
   .tree .row .btn-line:active { background: #FFD2BD; }
+  .widget { display: flex; align-items: center; gap: 10px; background: #FFF8F5; border-radius: 26px; padding: 8px 18px 8px 8px; margin-top: 22px; max-width: 330px; box-shadow: 0 6px 18px rgba(90,20,40,.14); }
+  .widget img { width: 96px; height: 96px; }
+  .widget b { display: block; font: 600 19px/24px var(--display, inherit); color: #5A1428; }
+  .widget span { display: flex; gap: 10px; margin-top: 4px; } .widget i { font-style: normal; font-weight: 700; font-size: 13px; } .widget .me { color: #A89AA0; } .widget .her { color: #E8799A; }
+  .widget-line { margin: 12px 0 0; color: var(--muted); font-size: 16px; max-width: 36ch; }
   .reset { background: none; border: 0; color: #76505A; font: 500 15px var(--body); cursor: pointer; min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
 
   /* ------------------------------------------------------------ packs */
@@ -219,6 +224,7 @@
   .stores { display: none; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
   html.launched .pilot-only { display: none !important; }
   html.launched .stores { display: flex; }
+  html.launched .stores:empty { display: none; }
 
   /* ------------------------------------------------------------ faq */
   .faq { display: grid; gap: 10px; margin-top: 32px; max-width: 760px; }
@@ -315,14 +321,16 @@
   <div class="wrap">
     <div>
       <h2>אל תתנו לעץ לנבול</h2>
-      <p class="lead">לכל זוג יש עץ. הוא גדל בכל יום ששניכם עונים, וצמא ביום שמפספסים. שאלה אחת ביחד מחזירה אותו לעצמו.</p>
+      <p class="lead">לכל זוג יש עץ. הוא גדל מכל שאלה ששניכם עונים עליה, וצמא ביום שמפספסים. שאלה אחת ביחד מחזירה אותו לעצמו.</p>
+      <div class="widget" aria-hidden="true"><img src="art/tree/5-0.svg" width="96" height="96" alt=""><div><b>מאיה ענתה · תורך</b><span><i class="me">נועם</i><i class="her">מאיה</i></span></div></div>
+      <p class="widget-line">והוא גר גם על מסך הבית: וידג׳ט שפורח ברגע שבן או בת הזוג עונים.</p>
     </div>
     <div class="garden">
       <img id="tree-img" src="art/tree/1-0.svg" width="260" height="260" alt="">
       <div class="seeds" id="tree-seeds" aria-hidden="true"></div>
       <p class="tree-line" id="tree-line" aria-live="polite"></p>
       <div class="row">
-        <button class="btn btn-red btn-sm" type="button" id="tree-grow">שנינו ענינו</button>
+        <button class="btn btn-red btn-sm" type="button" id="tree-grow">ענינו על שאלה</button>
         <button class="btn btn-line btn-sm" type="button" id="tree-miss">יום בלי תשובות</button>
       </div>
       <button class="reset" type="button" id="tree-reset" hidden>מההתחלה</button>
@@ -348,17 +356,17 @@
   <div class="wrap">
     <h2>מורידים, שניכם</h2>
     <p class="lead pilot-only">שנינו עוד לא בחנויות. בפיילוט מקבלים את האפליקציה המלאה, בחינם ובלי הרשמה.</p>
-    <div class="switch pilot-only" role="tablist" aria-label="איזה טלפון">
+    <div class="switch" role="tablist" aria-label="איזה טלפון">
       <button type="button" role="tab" id="tab-ios" aria-controls="how-ios" aria-selected="true">אייפון</button>
       <button type="button" role="tab" id="tab-android" aria-controls="how-android" aria-selected="false">אנדרואיד</button>
     </div>
-    <div class="how pilot-only" id="how-ios" role="tabpanel" aria-labelledby="tab-ios">
+    <div class="how" id="how-ios" role="tabpanel" aria-labelledby="tab-ios">
       <ol>
         <li><b>מתקינים את TestFlight</b><span>האפליקציה של אפל לגרסאות לפני החנות.</span><a class="btn btn-line btn-sm" href="https://apps.apple.com/app/testflight/id899247664">TestFlight ב־App Store</a></li>
         <li><b>מתקינים את שנינו</b><span>מהקישור, באייפון.</span><a class="btn btn-red btn-sm" href="https://testflight.apple.com/join/8ZF1aGgc">להתקנה באייפון</a></li>
       </ol>
     </div>
-    <div class="how pilot-only" id="how-android" role="tabpanel" aria-labelledby="tab-android" hidden>
+    <div class="how" id="how-android" role="tabpanel" aria-labelledby="tab-android" hidden>
       <ol>
         <li><b>מצטרפים לקבוצת הבודקים</b><span>עם חשבון Google שבטלפון. זו רק הרשימה ש־Google צריכה.</span><a class="btn btn-line btn-sm" href="https://groups.google.com/g/shneinu-testers">להצטרף לקבוצה</a></li>
         <li><b>מתקינים מ־Google Play</b><span>״להצטרף לבדיקה״, ואז להתקנה.</span><a class="btn btn-red btn-sm" href="https://play.google.com/apps/testing/com.shneinu.app">להתקנה באנדרואיד</a></li>
@@ -399,8 +407,10 @@
 </footer>
 
 <script>
-// After launch: put the two store links here. The pilot steps give way to
-// store buttons, this phone's store first.
+// After launch: put the store links here. With both, the pilot steps give way
+// to store buttons, this phone's store first. With one (iPhone first, while
+// Android is still in Google's test), that phone's tab gets its store button
+// and the other keeps its test steps.
 const STORES = { ios: '', android: '' };
 
 const ua = navigator.userAgent;
@@ -428,14 +438,25 @@ if (phone) {
 if (STORES.ios || STORES.android) {
   document.documentElement.classList.add('launched');
   const label = { ios: 'להורדה מ־App Store', android: 'להורדה מ־Google Play' };
-  const order = phone === 'android' ? ['android', 'ios'] : ['ios', 'android'];
-  for (const store of order) {
-    if (!STORES[store]) continue;
-    const a = document.createElement('a');
-    a.className = 'btn btn-white';
-    a.href = STORES[store];
-    a.textContent = label[store];
-    document.querySelector('[data-stores]').append(a);
+  if (STORES.ios && STORES.android) {
+    document.querySelector('.get .switch').style.display = 'none';
+    for (const o of ['ios', 'android']) $('how-' + o).style.display = 'none';
+    const order = phone === 'android' ? ['android', 'ios'] : ['ios', 'android'];
+    for (const store of order) {
+      const a = document.createElement('a');
+      a.className = 'btn btn-white';
+      a.href = STORES[store];
+      a.textContent = label[store];
+      document.querySelector('[data-stores]').append(a);
+    }
+  } else {
+    for (const store of ['ios', 'android']) {
+      if (!STORES[store]) continue;
+      $('how-' + store).innerHTML = '<ol><li><b>מורידים את שנינו</b><span>בחינם, מהחנות.</span><a class="btn btn-red btn-sm"></a></li></ol>';
+      const a = $('how-' + store).querySelector('a');
+      a.href = STORES[store];
+      a.textContent = label[store];
+    }
   }
 }
 
@@ -495,19 +516,21 @@ $('demo-next').addEventListener('click', () => {
 showDemo();
 
 // ------------------------------------------------------------ the tree
-// The app's rules, simplified: it grows a stage after 1, 2, 3, 5, 10 and 14
-// days both answered; each day missed adds a degree of wilt (up to 3); a day
-// both answered heals it; a week with no answers drops it a stage.
-const STAGES = [0, 1, 2, 3, 5, 10, 14];
+// The app's rules (since Nov 13, 2026), simplified: it grows a stage at 3, 7,
+// 14, 25, 40 and 60 questions answered together (the daily one, extras, a
+// blitz); each day missed adds a degree of wilt (up to 3); a day both answered
+// heals it; a week with no answers drops it a stage.
+const STAGES = [0, 3, 7, 14, 25, 40, 60];
 const tree = { points: 0, wilt: 0, quiet: 0 };
 const stageOf = (p) => STAGES.filter((s) => p >= s).length;
 const days = (n) => (n === 1 ? 'יום אחד' : n === 2 ? 'יומיים' : `${n} ימים`);
+const questions = (n) => (n === 1 ? 'שאלה אחת' : `${n} שאלות`);
 function treeLine(stage) {
   if (tree.wilt === 0) {
     if (stage === 1 && tree.points === 0) return 'נבט קטן. כשתענו שניכם על השאלה הראשונה, הוא יגדל.';
     if (stage === 7) return 'בשיא שלו. כל יום ששניכם עונים שומר עליו פורח.';
     const left = STAGES[stage] - tree.points;
-    return left === 1 ? 'עוד יום אחד ששניכם עונים, והוא גדל.' : `עוד ${days(left)} ששניכם עונים, והוא גדל.`;
+    return `עוד ${questions(left)} ביחד, והוא גדל.`;
   }
   if (tree.wilt === 1) return 'צמא. עונים היום ביחד, והוא מתאושש.';
   if (tree.wilt === 2) return 'נובל. שאלה אחת ביחד היום, והוא חוזר לעצמו.';

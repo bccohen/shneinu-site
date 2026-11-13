@@ -60,18 +60,18 @@
 
   <a class="btn btn-ghost" id="open" href="shneinu://">כבר יש לי את שנינו: לפתוח</a>
 
-  <div class="switch pilot-only" role="tablist" aria-label="איזה טלפון">
+  <div class="switch" role="tablist" aria-label="איזה טלפון">
     <button type="button" role="tab" id="tab-ios" aria-controls="how-ios" aria-selected="true">אייפון</button>
     <button type="button" role="tab" id="tab-android" aria-controls="how-android" aria-selected="false">אנדרואיד</button>
   </div>
-  <div class="how pilot-only" id="how-ios" role="tabpanel" aria-labelledby="tab-ios">
+  <div class="how" id="how-ios" role="tabpanel" aria-labelledby="tab-ios">
     <ol>
       <li><b>מתקינים את TestFlight</b><span>האפליקציה של אפל לגרסאות לפני החנות.</span><a class="btn btn-line" href="https://apps.apple.com/app/testflight/id899247664">TestFlight ב־App Store</a></li>
       <li><b>מתקינים את שנינו</b><span>מהקישור, באייפון.</span><a class="btn btn-red" href="https://testflight.apple.com/join/8ZF1aGgc">להתקנה באייפון</a></li>
       <li><b>מדביקים את הקוד</b><span>בפתיחה בוחרים ״קיבלתי קוד״.</span></li>
     </ol>
   </div>
-  <div class="how pilot-only" id="how-android" role="tabpanel" aria-labelledby="tab-android" hidden>
+  <div class="how" id="how-android" role="tabpanel" aria-labelledby="tab-android" hidden>
     <ol>
       <li><b>מצטרפים לקבוצת הבודקים</b><span>עם חשבון Google שבטלפון. זו רק הרשימה ש־Google צריכה.</span><a class="btn btn-line" href="https://groups.google.com/g/shneinu-testers">להצטרף לקבוצה</a></li>
       <li><b>מתקינים מ־Google Play</b><span>״להצטרף לבדיקה״, ואז להתקנה.</span><a class="btn btn-red" href="https://play.google.com/apps/testing/com.shneinu.app">להתקנה באנדרואיד</a></li>
@@ -86,7 +86,8 @@
 // installed, phones open the app straight from the link; this page is for
 // everyone else. During the pilot anyone can download: TestFlight on iPhone;
 // on Android the testers' Google Group, then Play's test. After launch,
-// STORES gives the store buttons instead.
+// STORES gives the store buttons instead; with one store so far, only that
+// phone's tab changes.
 const STORES = { ios: '', android: '' };
 const $ = (id) => document.getElementById(id);
 
@@ -122,16 +123,25 @@ for (const o of ['ios', 'android']) $('tab-' + o).addEventListener('click', () =
 if (phone) showOs(phone);
 
 if (STORES.ios || STORES.android) {
-  for (const el of document.querySelectorAll('.pilot-only')) el.hidden = true;
-  const order = phone === 'android' ? ['android', 'ios'] : ['ios', 'android'];
   const label = { ios: 'להורדה מ־App Store', android: 'להורדה מ־Google Play' };
-  for (const store of order) {
-    if (!STORES[store]) continue;
-    const a = document.createElement('a');
-    a.className = 'btn btn-white';
-    a.href = STORES[store];
-    a.textContent = label[store];
-    $('stores').append(a);
+  if (STORES.ios && STORES.android) {
+    for (const el of document.querySelectorAll('.switch, .how')) el.style.display = 'none';
+    const order = phone === 'android' ? ['android', 'ios'] : ['ios', 'android'];
+    for (const store of order) {
+      const a = document.createElement('a');
+      a.className = 'btn btn-white';
+      a.href = STORES[store];
+      a.textContent = label[store];
+      $('stores').append(a);
+    }
+  } else {
+    for (const store of ['ios', 'android']) {
+      if (!STORES[store]) continue;
+      $('how-' + store).innerHTML = '<ol><li><b>מורידים את שנינו</b><span>בחינם, מהחנות.</span><a class="btn btn-red"></a></li><li><b>מדביקים את הקוד</b><span>בפתיחה בוחרים ״קיבלתי קוד״.</span></li></ol>';
+      const a = $('how-' + store).querySelector('a');
+      a.href = STORES[store];
+      a.textContent = label[store];
+    }
   }
 }
 </script>
